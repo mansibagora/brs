@@ -1,0 +1,4370 @@
+  <html>
+    <head>
+        <title>BRS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/ico" href="{{url_for('static', filename='logo.jpg', width=100)}}" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <style>
+        .cl:hover {
+  width: 110px;
+  height: 120px; 
+  border: 4px solid #f1f1f1;
+}
+.main-text
+{
+    position: absolute;
+    top: 50px;
+    width: 96.66666666666666%;
+    color: #FFF;
+}
+.background {
+  filter: blur(3px);
+}
+    </style>
+    <script>
+function checkpswd(form) {
+    pswd = form.pass.value;
+    cpswd = form.cpass.value;
+    if(pswd !== cpswd)
+    {
+        alert("password doesnot match!!!");
+        return false;
+    }
+    else
+        return true;
+}
+
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+      
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
+    <body>
+      <!--Navbar-->
+<nav class="navbar navbar-expand-lg  navbar-light">
+  <img  src="{{url_for('static', filename='logo.jpg')}}" style="max-width: 40px">&nbsp&nbsp&nbsp
+  <a class="navbar-brand" href="{{ url_for('home') }}"><i><b>BooksForYou</b></i></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </ul>
+    <a href="#section2" ><button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Login</button></a>&nbsp&nbsp&nbsp&nbsp
+    <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalLoginAvatar"><button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Signup</button></a>
+  </div>
+</nav>
+<!-- Navbar -->
+            <div style="height: max-content">
+                <!carousel>
+            <div id="carouselExampleControls" class="carousel slide bg-image" data-ride="carousel"style="height: max-content">
+  <div class="carousel-inner background">   
+    <div class="carousel-item active" data-interval="5000">
+        <img class="d-block w-100 bg-image" src="{{url_for('static', filename='image1.jpeg', width=100)}}" />
+        <div class="d-none d-sm-block d-sm-none d-md-block"></div>
+    </div>
+    <div class="carousel-item" data-interval="5000">
+        <img class="d-block w-100 bg-image" src="{{url_for('static', filename='image2.jpg', width=100)}}" />
+        <div class="d-none d-sm-block d-sm-none d-md-block"></div></div>
+      <div class="carousel-item" data-interval="5000">
+        <img class="d-block w-100 bg-image" src="{{url_for('static', filename='image3.jpg', width=100)}}" />
+        <div class="d-none d-sm-block d-sm-none d-md-block">
+        </div></div>
+    </div>
+    <!-- POPULARITY BASED RECOMMENDATN -->
+  <div class="main-text" style="color: black;">
+  <div><br>
+  <b><i><h3 style="text-shadow: 1px 1px white;"><center>MOST POPULAR BOOKS</center></h3></i></b></div><br>
+  <center><div class="row" style="margin-top: 15px;margin-bottom: 30px">{% for i in range(12)%}
+   <!-- <a class="col-sm" style="color: black;cursor: pointer;text-decoration: none;">
+      {%set imge=image[i]%}
+        <img src="{{imge}}" class="card-img" width="80" height="80" class="shadow p mb  rounded">
+        <h6  class="shadow p mb  rounded" style="background-color: white">{{ title[i] }}</h6> 
+        <div class="shadow p mb  rounded" style="background-color: white">{{author[i]}}&nbsp&nbsp&nbsp<small>{{yop[i]}}</small></div>
+    </a>-->
+    {%set imge=image[i]%}
+<a href="#section2" class="card mb-2" style="max-width: 340px;margin-right: 5px;margin-left: 0px;background-color: transparent;border-width: 3px;border-color: white;cursor: pointer;text-decoration: none;color: black;width: 24%">
+  <div class="row no-gutters">
+    <div class="col-md-4"><br>
+      <img src="{{imge}}" class="shadow p mb  rounded card-img"style="max-width: 60px;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h6  class="shadow p mb  rounded card-title" style="background-color: white">{{ title[i] }}</h6> 
+        <p class="shadow p mb  rounded card-text"style="background-color: white">{{author[i]}}&nbsp&nbsp<small>{{yop[i]}}</small></p>
+      </div>
+    </div>
+  </div>
+</a>
+    {% endfor %} 
+  </div></center>
+</div>
+  <!--END POPULARITY BASED RECOMMENDATN -->
+<!--  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>-->
+</div>
+          <!-- INTRO-->
+        <div style="height: max-content;margin-top: 30px"><center>
+                    <img  src="{{url_for('static', filename='logo.jpg', width=100)}}"  width="90" height="100" style="margin-top: 20px;margin-bottom: 20px" class="cl shadow p-3 mb-5 bg-white rounded">
+                    <h3><i>BooksforYou.com</i></h3>
+                <p style="width: 70%;align-content: center">BooksforYou.com, one of Worlds's best known site and the world's largest book recommendation service was founded with a simple objective - to help people find books of their own interest..over 1.5lakhs books dataset are present.</p>
+                </center></div>
+
+                <!--END INTRO-->
+
+<!-- Login-->
+        <form action ="{{url_for('login')}}" id="section2" method="post">
+          <table align="center"style="width:500px; top: 30%;">
+              <tr>
+                   <td><br>
+                   </td></tr>
+              <tr><td><br><br></td></tr>
+               <tr>
+                   <td><center><input type="email" class="form-control form-control-sm" id="email" name="email" placeholder=" ENTER EMAIL"  style="width: 70%;border-width: 3px" required></center><br></td>
+               </tr>
+               <tr>
+                   <td><center><input type="password" class="form-control form-control-sm" id="pswd" name="pswd" placeholder=" ENTER PASSWORD" style="width: 50%;border-width: 3px" required></center><br></td>
+               </tr>
+               <tr>
+                   <td><center><button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="LOGIN" style="border-width: 3px">Login</button></center></td>
+               </tr>
+               
+               <tr>
+                   <td><hr style="background-color: white"><center><a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalLoginAvatar">NOT A USER ?</a></center></td>
+               </tr>
+           </table>
+       </form>
+
+<!-- END LOGIN-->
+                <!-- how it works -->
+            <div style="height: max-content;margin-top: 30px"><center>
+                    <h3>How it works</h3>
+                    <h6>Get started on BooksforYou.com today in 4 simple steps:</h6>
+                <p style="width: 70%;align-content: center"></p>
+  <div class="row" style="margin-top: 30px;margin-bottom: 30px">
+    <div class="col-sm">
+        <h5>Create Your Profile</h5><br> 
+        <img src="{{url_for('static', filename='signup.png', width=100)}}" width="90" height="100" class="shadow p-3 mb-5 bg-white rounded"><br>
+        Don't forget to add a books interest!!!
+    </div>
+      <div class="col-sm">
+        <h5>Save books of interest</h5><br> 
+        <img src="{{url_for('static', filename='save.png', width=100)}}" width="90" height="100" class="shadow p-3 mb-5 bg-white rounded"><br>
+        Save books!!!
+    </div>
+    <div class="col-sm">
+        <h5>Browse Your interest</h5><br>
+        <img src="{{url_for('static', filename='search.png', width=100)}}" width="90" height="100" class="shadow p-3 mb-5 bg-white rounded"><br>
+        Search books of your interest!!
+    </div>
+    <div class="col-sm">
+        <h5>Rate Books</h5><br>
+        <img src="{{url_for('static', filename='communicate.png', width=100)}}" width="90" height="100" class="shadow p-3 mb-5 bg-white rounded"><br>
+        Don't forget to rate books!!!
+    </div>
+  </div>
+                </center>
+            </div>
+            <!--END how it works -->
+
+    <!--Modal: Login with Avatar Form-->
+<div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+    <!--Content-->
+    <div class="modal-content" style="width: 500px">
+
+      <!--Header-->
+      <div class="modal-header">
+        <img src="{{url_for('static', filename='logo.jpg')}}" alt="avatar" class="rounded-circle img-responsive" style="margin-left: auto; margin-right: auto;">
+      </div>
+      <!--Body-->
+      <form onsubmit="return checkpswd(this)" action="{{url_for('signup')}}" method="post">
+      <div class="modal-body text-center mb-1" >
+
+        <h5 class="mt-1 mb-2">BooksForYou</h5>
+
+        <div class="modal-body mx-3">
+        <div class="md-form mb-3">
+          <input type="text" id="name" name="name" class="form-control validate form-control-sm" placeholder="Your name">
+        </div>
+        <div class="md-form mb-3">
+          <input type="email" id="email" name="email" class="form-control validate form-control-sm" placeholder="Your email">
+        </div>
+
+        <div class="md-form mb-3">
+          <input type="password" id="pass" name="pass" class="form-control validate form-control-sm" placeholder="Password">
+        </div>
+
+          <div class="md-form mb-3">
+          <input type="password" id="cpass" name="cpass" class="form-control validate form-control-sm" placeholder="Confirm Password">
+        </div>
+          <div class="md-form mb-3">
+          <select class="form-control form-control-sm" name="int1" id="int1" required>
+<option value="" style="color:#888;">Interest Area</option>
+<option>Young Adult </option>
+<option> Mystery </option>
+<option> Romance </option>
+<option>Christian Fiction </option>
+<option> Christian </option>
+<option> Fiction </option>
+<option>Thriller </option>
+<option> Horror </option>
+<option>Economics-Finance </option>
+<option> Nonfiction </option>
+<option> Business </option>
+<option> Finance-Personal Finance </option>
+<option> Self Help </option>
+<option> Currency-Money </option>
+<option> Economics </option>
+<option> Self Help-Personal Development </option>
+<option> Audiobook </option>
+<option> Psychology </option>
+<option>Romance </option>
+<option> Historical-Historical Fiction </option>
+<option> Historical-Regency </option>
+<option> Romance-Historical Romance </option>
+<option> Historical </option>
+<option>Fiction </option>
+<option> American-Southern </option>
+<option> Gothic-Southern Gothic </option>
+<option>Sequential Art-Comics </option>
+<option> Sequential Art-Graphic Novels </option>
+<option> Sequential Art-Bande DessinÃÂ©e </option>
+<option> Humor </option>
+<option> Cultural-France </option>
+<option>Poetry </option>
+<option> Childrens </option>
+<option> Classics </option>
+<option>Fantasy </option>
+<option> Science Fiction-Steampunk </option>
+<option> Science Fiction </option>
+<option> Adventure </option>
+<option> Science Fiction Fantasy </option>
+<option> Adult </option>
+<option> Fantasy-Epic Fantasy </option>
+<option> Fantasy-Urban Fantasy </option>
+<option>Mystery </option>
+<option> Thriller </option>
+<option> Suspense </option>
+<option>Art </option>
+<option> Autobiography-Memoir </option>
+<option> Inspirational </option>
+<option> Language-Writing </option>
+<option>Nonfiction </option>
+<option> Science </option>
+<option> History </option>
+<option> Sexuality </option>
+<option> Anthropology </option>
+<option> Mystery-Crime </option>
+<option> Fantasy-Dragons </option>
+<option> Fantasy-High Fantasy </option>
+<option>History </option>
+<option> Cultural-Russia </option>
+<option> Military-Military History </option>
+<option> War </option>
+<option> War-Military Fiction </option>
+<option> Cultural-Ireland </option>
+<option> Womens Fiction-Chick Lit </option>
+<option> Contemporary </option>
+<option> Adult Fiction </option>
+<option> European Literature-Irish Literature </option>
+<option> Womens Fiction </option>
+<option> Adult Fiction-Erotica </option>
+<option> Young Adult </option>
+<option>Historical-Historical Fiction </option>
+<option> War-World War II </option>
+<option> World War II-Holocaust </option>
+<option>Horror </option>
+<option> Fantasy </option>
+<option> Shapeshifters-Werewolves </option>
+<option>Fantasy-Paranormal </option>
+<option> Romance-Paranormal Romance </option>
+<option> Magical Realism </option>
+<option> Thriller-Mystery Thriller </option>
+<option> Mystery-Historical Mystery </option>
+<option> European Literature-French Literature </option>
+<option> Literature </option>
+<option> Crime-True Crime </option>
+<option> Biography </option>
+<option>Romance-Paranormal Romance </option>
+<option> Fantasy-Paranormal </option>
+<option> Paranormal-Shapeshifters </option>
+<option> Fantasy-Magic </option>
+<option> Young Adult-Young Adult Fantasy </option>
+<option> Romance-Christian Romance </option>
+<option> Novels </option>
+<option> Cultural-Africa </option>
+<option> Eastern Africa-Malawi </option>
+<option> Biography Memoir </option>
+<option> Biography-Autobiography </option>
+<option> Academic-School </option>
+<option>World War II-Holocaust </option>
+<option> Short Stories </option>
+<option> European Literature-Polish Literature </option>
+<option> Science Fiction-Time Travel </option>
+<option>Plays </option>
+<option> Drama </option>
+<option> Fantasy-Mythology </option>
+<option> European Literature-German Literature </option>
+<option>Childrens-Picture Books </option>
+<option> North American Hi...-American History </option>
+<option> Military History-Civil War </option>
+<option> Politics </option>
+<option> Politics-Presidents </option>
+<option>Short Stories </option>
+<option> Childrens-Middle Grade </option>
+<option> School Stories-Boarding School </option>
+<option> Young Adult-Teen </option>
+<option> Young Adult-High School </option>
+<option> Realistic Fiction </option>
+<option> Animals </option>
+<option> Paranormal-Ghosts </option>
+<option> Fantasy-Supernatural </option>
+<option> Paranormal-Vampires </option>
+<option> Cultural-Poland </option>
+<option> Science Fiction-Dystopia </option>
+<option> Apocalyptic-Post Apocalyptic </option>
+<option> Science Fiction-Apocalyptic </option>
+<option> History-Russian History </option>
+<option> History-European History </option>
+<option> Literature-th Century </option>
+<option> New Adult </option>
+<option> Romance-Contemporary Romance </option>
+<option> Music </option>
+<option> Music-Musicians </option>
+<option> Religion-Buddhism </option>
+<option> Philosophy </option>
+<option> Spirituality </option>
+<option> Religion </option>
+<option> Cultural-Italy </option>
+<option> Historical Romance-Regency Romance </option>
+<option> Historical-Georgian </option>
+<option> European Literature-British Literature </option>
+<option> Cultural-Australia </option>
+<option> Action </option>
+<option> Adventure-Survival </option>
+<option> Science Fiction-Aliens </option>
+<option>Romance-Romantic Suspense </option>
+<option> Thriller-Legal Thriller </option>
+<option> Pseudoscience-Conspiracy Theories </option>
+<option> Fantasy-Dark Fantasy </option>
+<option> Northern Africa-Egypt </option>
+<option> Literature-American </option>
+<option> Romance-Romantic Suspense </option>
+<option>Classics </option>
+<option> Fairies-Fae </option>
+<option> Romance-Science Fiction Romance </option>
+<option>Erotica-BDSM </option>
+<option> Mystery-Detective </option>
+<option>Womens Fiction-Chick Lit </option>
+<option> Anthologies </option>
+<option>Cultural-Africa </option>
+<option> Western Africa-Ghana </option>
+<option> Literature-African Literature </option>
+<option> English History-Tudor Period </option>
+<option>Fantasy-Urban Fantasy </option>
+<option>New Adult </option>
+<option> Academic-College </option>
+<option> Sociology-Abuse </option>
+<option> Fantasy-Fairy Tales </option>
+<option> Fairy Tales-Beauty and The Beast </option>
+<option> Retellings </option>
+<option> Comics-Superheroes </option>
+<option> Cultural-Canada </option>
+<option> Science Fiction-Robots </option>
+<option> Literary Fiction </option>
+<option>Business </option>
+<option> Leadership </option>
+<option> Language-Communication </option>
+<option> Business-Management </option>
+<option> Buisness </option>
+<option> Law </option>
+<option> European Literature-Italian Literature </option>
+<option> Feminism </option>
+<option> Womens </option>
+<option> Childrens-Juvenile </option>
+<option> Family </option>
+<option> Childrens-Chapter Books </option>
+<option> Christianity-Lds </option>
+<option> Biblical Fiction </option>
+<option> Spy Thriller-Espionage </option>
+<option> Novella </option>
+<option>Philosophy </option>
+<option>Science Fiction </option>
+<option>Childrens-Middle Grade </option>
+<option>Christian </option>
+<option> Christian-Christian Living </option>
+<option> Religion-Christianity </option>
+<option> Relationships </option>
+<option> Religion-Theology </option>
+<option>Paranormal-Vampires </option>
+<option> Holiday-Christmas </option>
+<option> Holiday </option>
+<option> Childrens-Storytime </option>
+<option> Kids </option>
+<option>Sequential Art-Manga </option>
+<option> Sequential Art-Comics </option>
+<option>Childrens </option>
+<option>Novels </option>
+<option> Environment </option>
+<option> Book Club </option>
+<option> Environment-Climate Change </option>
+<option> Environment-Nature </option>
+<option> Romance-Erotic Romance </option>
+<option> Humor-Comedy </option>
+<option> Eastern Africa-Kenya </option>
+<option>Religion </option>
+<option> Religion-Judaism </option>
+<option> Literature-Jewish </option>
+<option> Reference </option>
+<option> Mystery-Murder Mystery </option>
+<option> Cultural-Greece </option>
+<option> European History-French Revolution </option>
+<option>European Literature-Romanian Literature </option>
+<option> Poetry </option>
+<option>Sequential Art-Graphic Novels </option>
+<option> Cultural-Iran </option>
+<option> Sports-Sports </option>
+<option>Autobiography-Memoir </option>
+<option>Romance-Historical Romance </option>
+<option> Historical-Medieval </option>
+<option> Historical Romance-Medieval Romance </option>
+<option> Writing-Essays </option>
+<option> Art </option>
+<option>Asian Literature-Turkish Literature </option>
+<option> Cultural-Turkish </option>
+<option> Roman </option>
+<option>Realistic Fiction </option>
+<option> American History-American Civil War </option>
+<option> Cultural-Japan </option>
+<option> Asian Literature-Japanese Literature </option>
+<option> Russian History-Romanovs </option>
+<option> Cultural-Asia </option>
+<option> LGBT </option>
+<option> Romance-M M Romance </option>
+<option> Cultural-Latin American </option>
+<option> European Literature-Spanish Literature </option>
+<option>Dark </option>
+<option> Erotica-BDSM </option>
+<option> Cultural-Scotland </option>
+<option> Science-Geography </option>
+<option> Science-History Of Science </option>
+<option> Science-Technology </option>
+<option> Travel </option>
+<option> Science-Popular Science </option>
+<option> European Literature-Scandinavian Literature </option>
+<option> Cultural-Sweden </option>
+<option> Scandinavian Lite...-Nordic Noir </option>
+<option> Childrens-Picture Books </option>
+<option> Childrens-nd Grade </option>
+<option> Health-Mental Health </option>
+<option> Philosophy-Theory </option>
+<option> Sociology </option>
+<option>LGBT </option>
+<option> GLBT-Queer </option>
+<option> GLBT-Lesbian </option>
+<option> The United States Of America </option>
+<option> Horror-Zombies </option>
+<option> Young Adult-Young Adult Contemporary </option>
+<option> Young Adult-Coming Of Age </option>
+<option> Gothic </option>
+<option>Romance-M M Romance </option>
+<option> Westerns </option>
+<option> Historical-Victorian </option>
+<option> Futuristic </option>
+<option> Dark </option>
+<option> Literature-Russian Literature </option>
+<option> Speculative Fiction </option>
+<option> Sequential Art-Comic Strips </option>
+<option> Cultural-Germany </option>
+<option> Mystery-Noir </option>
+<option>Economics </option>
+<option> Crafts-Knitting </option>
+<option> Christian Fiction </option>
+<option>Science </option>
+<option> Artificial Intelligence </option>
+<option> Futurism </option>
+<option> Science-Physics </option>
+<option>Politics </option>
+<option> History-World History </option>
+<option>Humor </option>
+<option> Space-Space Opera </option>
+<option> Love </option>
+<option>Cultural-India </option>
+<option> Asian Literature-Indian Literature </option>
+<option> Paranormal-Wizards </option>
+<option> Paranormal-Demons </option>
+<option>Culture-Film </option>
+<option> Parenting </option>
+<option> Romance-Fantasy Romance </option>
+<option>Self Help </option>
+<option> Economics-Finance </option>
+<option> Writing-Journalism </option>
+<option>Science Fiction-Steampunk </option>
+<option> Graphic Novels Comics </option>
+<option> Comics-Comic Book </option>
+<option>Food and Drink-Food </option>
+<option> Food and Drink-Cooking </option>
+<option> Food and Drink-Food Writing </option>
+<option> Food and Drink-Foodie </option>
+<option> Food and Drink-Cookbooks </option>
+<option> Plays-Theatre </option>
+<option>Adult Fiction-Erotica </option>
+<option> Erotica-Menage </option>
+<option> Menage-M M F </option>
+<option>Sports-Sports </option>
+<option> Sports-Baseball </option>
+<option> Education </option>
+<option> Gender </option>
+<option> Animals-Cats </option>
+<option> Lds-Mormonism </option>
+<option> LGBT-Gay </option>
+<option> Space </option>
+<option> Plays </option>
+<option> European Literature-Danish </option>
+<option>Mystery-Crime </option>
+<option> Modern </option>
+<option> Cultural-India </option>
+<option> Art-Art History </option>
+<option>Media Tie In-Star Wars </option>
+<option> Mythology-Arthurian </option>
+<option> Cultural-African American </option>
+<option> Culture-Pop Culture </option>
+<option> Cultural </option>
+<option> Economics-Finance user</option>
+<option> Economics user</option>
+<option> Currency-Money user</option>
+<option>Music </option>
+<option> Literature-Asian Literature </option>
+<option> Cultural-Spain </option>
+<option> Games-Video Games </option>
+<option> Novels-Light Novel </option>
+<option> Literature-Banned Books </option>
+<option>Fat-Fat Acceptance user</option>
+<option> Poetry user</option>
+<option> Realistic Fiction-Slice Of Life </option>
+<option>Writing-Essays user</option>
+<option>LGBT-Gay </option>
+<option> Gay-Gay Fiction </option>
+<option> Novels user</option>
+<option>Fairy Tales-Fairy Tale Retellings </option>
+<option> Paranormal-Angels </option>
+<option>Fantasy-Magic </option>
+<option> Childrens user</option>
+<option> Romance user</option>
+<option> New Adult user</option>
+<option>Horror-Zombies </option>
+<option>Spirituality </option>
+<option>Science Fiction user</option>
+<option> Fantasy user</option>
+<option>Childrens user</option>
+<option> Childrens-Middle Grade user</option>
+<option> Science Fiction-Dystopia user</option>
+<option> Science Fiction Fantasy user</option>
+<option>Cultural-Japan </option>
+<option> Combat-Martial Arts </option>
+<option>Science Fiction-Dystopia user</option>
+<option> Religion-Hinduism </option>
+<option>Romance-Christian Romance </option>
+<option> Business-Amazon user</option>
+<option> Business-Amazon </option>
+<option>Science Fiction-Time Travel </option>
+<option> Nature-Outdoors </option>
+<option>Animals </option>
+<option> Childrens-Young Readers </option>
+<option> Animals-Dogs </option>
+<option>Contemporary user</option>
+<option> Adult Fiction-Erotica user</option>
+<option>Short Stories user</option>
+<option>Inspirational </option>
+<option> Cultural-Russia user</option>
+<option> Paranormal-Shapeshifters user</option>
+<option> Thriller-Psychological Thriller </option>
+<option> Animals-Animal Fiction </option>
+<option>Romance-Erotic Romance </option>
+<option> Action user</option>
+<option>Fiction user</option>
+<option> Fantasy-Supernatural user</option>
+<option> Horror user</option>
+<option> Animals-Birds </option>
+<option> Drama user</option>
+<option>Biography </option>
+<option> Warfare-Fighters </option>
+<option> Inspirational user</option>
+<option> Womens Fiction user</option>
+<option>Paranormal-Witches </option>
+<option> Young Adult user</option>
+<option> Childrens-Childrens Classics </option>
+<option> Anthologies-Collections user</option>
+<option>Religion-Theology </option>
+<option> Childrens-Chapter Books user</option>
+<option> Fiction user</option>
+<option> Contemporary user</option>
+<option>Childrens-Picture Books user</option>
+<option> Nonfiction user</option>
+<option> Autobiography-Memoir user</option>
+<option>Health-Mental Health </option>
+<option> Self Help user</option>
+<option>Contemporary </option>
+<option>Fairy Tales-Beauty and The Beast </option>
+<option> Retellings user</option>
+<option> Adult user</option>
+<option>Romance-Science Fiction Romance user</option>
+<option> Southern Africa-South Africa user</option>
+<option> Culture-Society </option>
+<option>Young Adult user</option>
+<option>Young Adult-Young Adult Romance user</option>
+<option> Thriller-Spy Thriller </option>
+<option> War-Terrorism </option>
+<option> War user</option>
+<option> Christianity-Catholic </option>
+<option>Psychology </option>
+<option> Religion-Faith </option>
+<option> Race-Anti Racist user</option>
+<option> Race </option>
+<option> New York </option>
+<option>Literature user</option>
+<option> Mystery user</option>
+<option> Social Issues-Poverty </option>
+<option>Pseudoscience-Numerology </option>
+<option> Occult-Divination </option>
+<option> Spirituality-New Age </option>
+<option> Occult-Tarot </option>
+<option>Health </option>
+<option> Food and Drink-Vegan </option>
+<option> Food and Drink-Food </option>
+<option> Health-Nutrition </option>
+<option> Food and Drink-Diets </option>
+<option>Autobiography-Memoir user</option>
+<option> Modern user</option>
+<option> Science Fiction-Steampunk user</option>
+<option> Short Stories user</option>
+<option> War-World War I </option>
+<option>Literature-Banned Books </option>
+<option>Food and Drink-Cooking user</option>
+<option> History user</option>
+<option> War-World War II user</option>
+<option>Mystery-Crime user</option>
+<option> Contemporary Romance-Sports Romance </option>
+<option> Christian-Christian Non Fiction </option>
+<option>Fantasy-Mythology </option>
+<option> Paranormal-Witches </option>
+<option> Religion-Church </option>
+<option>War-Military Fiction </option>
+<option> Romance-Lesbian Romance </option>
+<option> Polyamorous-Reverse Harem </option>
+<option>Harlequin-Harlequin Heartwarming </option>
+<option> Category Romance-Harlequin </option>
+<option>Novels user</option>
+<option> Historical-Historical Fiction user</option>
+<option>Race user</option>
+<option>Religion-Islam </option>
+<option> Lds-Lds Fiction </option>
+<option>Religion-Baha I </option>
+<option>Computer Science-Programming </option>
+<option> Science-Computer Science </option>
+<option> Computer Science-Software </option>
+<option> Computer Science-Technical </option>
+<option> Unfinished </option>
+<option>Fantasy user</option>
+<option> Paranormal-Fairies </option>
+<option>Science Fiction-Dystopia </option>
+<option>Spy Thriller-Espionage user</option>
+<option> Literature-Banned Books user</option>
+<option> Cultural-China </option>
+<option> Football </option>
+<option>Cultural-France </option>
+<option> Asian Literature-Indonesian Literature </option>
+<option> Writing-Books About Books </option>
+<option> Productivity </option>
+<option>Paranormal-Angels </option>
+<option> Criticism-Literary Criticism </option>
+<option> Fairy Tales-Fairy Tale Retellings </option>
+<option> European Literature-Swedish Literature </option>
+<option>Language-Writing </option>
+<option>Paranormal Urban Fantasy user</option>
+<option> Travel-Road Trip </option>
+<option> Psychology user</option>
+<option> Humor user</option>
+<option> New Adult-New Adult Romance </option>
+<option>Paranormal-Shapeshifters user</option>
+<option> Paranormal-Vampires user</option>
+<option> Shapeshifters-Werewolves user</option>
+<option> Fantasy-Paranormal user</option>
+<option> Literary Fiction user</option>
+<option> Humor-Comedy user</option>
+<option> Parenting-Adoption </option>
+<option> Eastern Africa-Ethiopia </option>
+<option> Business-Entrepreneurship </option>
+<option>Philosophy user</option>
+<option> Mental Health-Mental Illness user</option>
+<option> Health-Mental Health user</option>
+<option>Psychology user</option>
+<option>Novels-Light Novel </option>
+<option> Christian Fiction-Christian Fantasy </option>
+<option> Mental Health-Mental Illness </option>
+<option> Literature-Latin American Literature </option>
+<option>Writing-Essays </option>
+<option> American-Americana </option>
+<option>Aviation </option>
+<option> LGBT-Transgender </option>
+<option> Civil War-Spanish Civil War </option>
+<option> European Literature-Dutch Literature </option>
+<option> Religion-Baha I </option>
+<option>Travel </option>
+<option> European Literature-Czech Literature </option>
+<option>Romance user</option>
+<option> Occult </option>
+<option> Philosophy-Metaphysics </option>
+<option> Occult-Magick </option>
+<option> Science-Astronomy </option>
+<option>Fantasy-Supernatural user</option>
+<option> Cultural-Israel </option>
+<option>Erotica-Menage </option>
+<option> Thriller-Mystery Thriller user</option>
+<option>Design </option>
+<option> Dungeons and Dragons-Forgotten Realms </option>
+<option> Death </option>
+<option> Comics Manga </option>
+<option> Horror-Zombies user</option>
+<option> Philosophy user</option>
+<option> Music-Hip Hop </option>
+<option>Romance-Paranormal Romance user</option>
+<option> Paranormal-Angels user</option>
+<option> Science Fiction-Cyberpunk </option>
+<option> Harlequin-Harlequin Heartwarming </option>
+<option> Disability </option>
+<option>Nonfiction user</option>
+<option> Paranormal-Demons user</option>
+<option> Social Science </option>
+<option> Classics-Classic Literature </option>
+<option> Superheroes-Marvel </option>
+<option> Young Adult-Young Adult Romance </option>
+<option>Religion user</option>
+<option> Polyamory </option>
+<option> Mystery-Cozy Mystery </option>
+<option> Manga-Seinen </option>
+<option> Adventure-Pirates </option>
+<option>Cultural-Russia </option>
+<option> k </option>
+<option>Polyamorous-Reverse Harem </option>
+<option> Cultural-International </option>
+<option>Paranormal-Vampires user</option>
+<option> Animals-Horses </option>
+<option>Fantasy-Dark Fantasy user</option>
+<option>Horror-Zombies user</option>
+<option>Thriller-Mystery Thriller </option>
+<option> European Literature-Finnish Literature </option>
+<option>Sports-Sports user</option>
+<option> Sequential Art-Graphic Novels user</option>
+<option>Parenting </option>
+<option> Marriage </option>
+<option> Cultural-Tasmania </option>
+<option> Asian Literature-Turkish Literature </option>
+<option> Cultural-Brazil </option>
+<option> Anthologies-Collections </option>
+<option> Short Stories-Short Story Collection </option>
+<option> Biology-Neuroscience </option>
+<option> American-African American Literature </option>
+<option>Westerns </option>
+<option> Own </option>
+<option> Lds-Lds Non Fiction </option>
+<option> Heroic Fantasy-Sword and Sorcery </option>
+<option> Pulp </option>
+<option> Religion user</option>
+<option> Social Science-Social Work </option>
+<option> Psychology-Counselling </option>
+<option> Medical </option>
+<option> Suspense user</option>
+<option> Pop Culture-Nerd </option>
+<option>European Literature-Czech Literature </option>
+<option> European Literature-Serbian Literature </option>
+<option> Mythology-Greek Mythology </option>
+<option> Religion-Islam </option>
+<option> Urban </option>
+<option> Culture-Film </option>
+<option>Epic </option>
+<option> Cultural-Pakistan </option>
+<option>Westerns user</option>
+<option> Political Science-International Relations </option>
+<option>Anthropology user</option>
+<option>Religion-Buddhism </option>
+<option> Childrens-st Grade </option>
+<option> Religion-Theology user</option>
+<option>European Literature-Portuguese Literature </option>
+<option> Romantic </option>
+<option> Media Tie In </option>
+<option> Western Africa-Nigeria </option>
+<option>War-World War I </option>
+<option>Category Romance-Love Inspired </option>
+<option> Love Inspired-Love Inspired Historical </option>
+<option> Thriller user</option>
+<option> Mystery-Crime user</option>
+<option> Music-Musicals </option>
+<option> Literature-English Literature </option>
+<option>Romance-Contemporary Romance </option>
+<option>Leadership </option>
+<option> Horror-Ghost Stories </option>
+<option>Poetry user</option>
+<option> Literature-st Century user</option>
+<option> Sequential Art-Manga </option>
+<option>Literature </option>
+<option> Humanities-Language </option>
+<option> Fantasy-Heroic Fantasy </option>
+<option> Romance-M F Romance </option>
+<option> Horror-Splatterpunk </option>
+<option> Menage-M F M </option>
+<option> Art-Photography </option>
+<option> Prayer </option>
+<option> Mythology-Mermaids </option>
+<option>Paranormal-Witches user</option>
+<option> Romance-Paranormal Romance user</option>
+<option>Sports-Mountaineering </option>
+<option> Mountaineering-Climbing </option>
+<option>Academic-Read For School </option>
+<option>Cultural-Australia </option>
+<option> Health </option>
+<option> Medicine-Psychiatry </option>
+<option> Health user</option>
+<option>Business user</option>
+<option> Games-Gaming </option>
+<option> Sports and Games-Games </option>
+<option>Historical-Georgian </option>
+<option> Science-Mathematics </option>
+<option> Fantasy-Weird Fiction </option>
+<option> Religion-Atheism </option>
+<option> African Literature-Egyptian Literature </option>
+<option> Literature-Marathi </option>
+<option> Science Fiction-Alternate History </option>
+<option>Urban </option>
+<option>Reference </option>
+<option> Cultural-Belgium </option>
+<option>Feminism </option>
+<option> Young Adult-Young Adult Historical Fiction </option>
+<option>Sociology-Abuse </option>
+<option> Eastern Africa-Mozambique </option>
+<option> Diary </option>
+<option>Holiday-Christmas </option>
+<option> Science-Technology user</option>
+<option>Environment-Nature </option>
+<option>Thriller user</option>
+<option> Literature-th Century user</option>
+<option> Science Fiction user</option>
+<option>Sequential Art-Graphic Novels user</option>
+<option> Presidents-Us Presidents </option>
+<option> Romance-Western Romance </option>
+<option> Religion-God </option>
+<option> Historical Fiction-Historical Fantasy </option>
+<option> Marriage user</option>
+<option> Music-Hip Hop user</option>
+<option>Cultural-African American user</option>
+<option> Sequential Art-Webcomic </option>
+<option> Art-Crafts </option>
+<option> How To </option>
+<option> Reference-Research </option>
+<option> Textbooks </option>
+<option> Health-Medicine </option>
+<option> Manga-Manhwa </option>
+<option> Southern Africa-South Africa </option>
+<option>Adult </option>
+<option>Modern </option>
+<option> Literature-st Century </option>
+<option> European Literature-Romanian Literature </option>
+<option> Cultural-Romania </option>
+<option> Manga-Yuri </option>
+<option> Nobel Prize </option>
+<option> Science-Biology </option>
+<option> Biology-Evolution </option>
+<option> Mystery-Hard Boiled </option>
+<option> Historical-Plantagenet </option>
+<option> Academic-Read For School </option>
+<option> Animals-Dinosaurs </option>
+<option> Holiday-Halloween </option>
+<option> Biology-Ecology </option>
+<option> Nature-Plants </option>
+<option> Science-Natural History </option>
+<option> Science Nature </option>
+<option> Science Fiction-Hard Science Fiction </option>
+<option>Adventure </option>
+<option> Sports-Mountaineering </option>
+<option> Weird Fiction-New Weird </option>
+<option>Relationships </option>
+<option> Social </option>
+<option> Sports-Hockey </option>
+<option> Manga-Shojo </option>
+<option>Food and Drink-Cookbooks </option>
+<option> Northern Africa-Libya user</option>
+<option>European Literature-German Literature </option>
+<option>Crime-True Crime </option>
+<option>Lds-Lds Fiction </option>
+<option>European Literature-Finnish Literature </option>
+<option> Northern Africa-Algeria </option>
+<option> Gay Romance-Gay For You </option>
+<option> War-Soldiers </option>
+<option>Anthologies </option>
+<option> Sociology user</option>
+<option> Dc Comics-Batman </option>
+<option> Superheroes-Dc Comics </option>
+<option> Sequential Art-Comix </option>
+<option> Gender-Gender Studies </option>
+<option> Social Movements-Social Justice </option>
+<option>History user</option>
+<option>Animals-Horses </option>
+<option> Sports-Fitness </option>
+<option> American-American Fiction </option>
+<option>Cultural-African American </option>
+<option> Sci Fi Fantasy </option>
+<option> Cryptids-Yeti </option>
+<option> Folklore-Monsters </option>
+<option>Mythology-Mermaids </option>
+<option> Manga-Yaoi </option>
+<option> Yaoi-Boys Love </option>
+<option> European Literature-Portuguese Literature </option>
+<option> Cultural-Portugal </option>
+<option> Couture-Fashion </option>
+<option> True Story </option>
+<option>Mystery-Noir </option>
+<option>Marriage </option>
+<option>Science-Mathematics </option>
+<option>European Literature-Italian Literature </option>
+<option> Social Issues-Activism </option>
+<option> Sports-Basketball </option>
+<option> Epic </option>
+<option>Media Tie In-Buffy The Vampire Slayer </option>
+<option>Drama </option>
+<option>Biography user</option>
+<option>Sequential Art-Bande DessinÃÂ©e </option>
+<option>Cultural-China </option>
+<option> Travel-Travelogue </option>
+<option> Folklore </option>
+<option>Combat-Martial Arts </option>
+<option> Young Adult-Young Adult Paranormal </option>
+<option> United States user</option>
+<option> Realistic Fiction user</option>
+<option> Criticism </option>
+<option> Christian Fiction-Christian Historical Fiction </option>
+<option>Amish </option>
+<option> Christian Fiction-Amish Fiction </option>
+<option>Suspense </option>
+<option>Esoterica-Astrology </option>
+<option>European Literature-Bulgarian Literature </option>
+<option> Race-Anti Racist </option>
+<option> Classics-Modern Classics </option>
+<option> Lovecraftian-Cthulhu Mythos </option>
+<option> Horror-Lovecraftian </option>
+<option> Marvel-X Men </option>
+<option> Food and Drink </option>
+<option> Paranormal-Witches user</option>
+<option> Cultural-Denmark </option>
+<option> Fantasy-Fairy Tales user</option>
+<option> Transport </option>
+<option> Manga-Shonen </option>
+<option>Roman </option>
+<option> International Rel...-International Development </option>
+<option> Religion-Cults </option>
+<option> Classics-Cult Classics </option>
+<option> Soccer </option>
+<option> Sports-Cycling </option>
+<option>Occult </option>
+<option> Literature-Ancient </option>
+<option>Cultural-Pakistan </option>
+<option> Music-Punk user</option>
+<option> Politics user</option>
+<option> Romance-Love Story </option>
+<option>Food and Drink-Cooking </option>
+<option> How To user</option>
+<option> Science-Geology </option>
+<option> Media Tie In-Buffy The Vampire Slayer </option>
+<option> Biblical </option>
+<option> Fantasy-Unicorns </option>
+<option> World Of Warcraft-Warcraft </option>
+<option> Mmorpg-World Of Warcraft </option>
+<option> Menage-M M M </option>
+<option>Fantasy-Fairy Tales </option>
+<option> Historical user</option>
+<option> Romance-Erotic Romance user</option>
+<option> Adventure user</option>
+<option> Emergency Services-Police </option>
+<option> Academic-Academia </option>
+<option>Dungeons and Dragons-Forgotten Realms </option>
+<option> Gardening </option>
+<option>Sports-Baseball </option>
+<option> Unfinished user</option>
+<option> History-Ancient History </option>
+<option>Business-Amazon -</option>
+<option> Mythology-Gods </option>
+<option> Teaching </option>
+<option> Romance-Time Travel Romance </option>
+<option> Military History-American Revolution </option>
+<option> American Revolution-American Revolutionary War </option>
+<option> Cultural-Hungary </option>
+<option> European Literature-Hungarian Literature </option>
+<option> Amish </option>
+<option> Biology-Genetics </option>
+<option> Illness-Disease </option>
+<option> Christianity-New Testament </option>
+<option> Literature-Canadian Literature </option>
+<option> Media Tie In-Anime </option>
+<option>Book Club </option>
+<option> Politics-Political Science </option>
+<option> Own user</option>
+<option> Role Playing Games-Dungeons and Dragons </option>
+<option>Writing-Books About Books </option>
+<option>Historical </option>
+<option> Media Tie In-Tv </option>
+<option> Music-Punk </option>
+<option>War </option>
+<option> Young Adult-Young Adult Science Fiction </option>
+<option>Dark user</option>
+<option> Sequential Art </option>
+<option>European Literature-Spanish Literature </option>
+<option> Christian-Christian Non Fiction user</option>
+<option> Cultural-Ukraine </option>
+<option> Romance-Time Travel Romance user</option>
+<option> Academic-Read For School user</option>
+<option> Family Law-Fostering </option>
+<option> Historical Fiction-Prehistoric </option>
+<option>Cultural-Canada </option>
+<option> Aviation </option>
+<option>Plays-Theatre </option>
+<option>Family </option>
+<option> Art-Art Design </option>
+<option> Design </option>
+<option> Military Fiction-Military Romance </option>
+<option> Adventure-Maritime </option>
+<option> Mathematics-Geometry </option>
+<option> Eastern Africa-Rwanda </option>
+<option> Lesbian-Lesbian Fiction </option>
+<option> Humor-Comedian </option>
+<option> Science Fiction-Climate Change Fiction </option>
+<option>Paranormal-Shapeshifters </option>
+<option> Emergency Services-Firefighters </option>
+<option> Military-Military History user</option>
+<option> Buddhism-Zen </option>
+<option>Adventure-Pirates </option>
+<option> History-Medieval History </option>
+<option>European Literature-Dutch Literature </option>
+<option> Asian Literature-Chinese Literature </option>
+<option>European Literature-Polish Literature </option>
+<option> Food and Drink-Diets user</option>
+<option> Food and Drink-Food user</option>
+<option> Cultural-Lebanon </option>
+<option>Art-Photography </option>
+<option>Military History-Civil War </option>
+<option> European Literature-Serbian Literature user</option>
+<option> Romance-Clean Romance </option>
+<option> Medievalism-Romanticism </option>
+<option> Animals-Wolves </option>
+<option>Christianity-Lds </option>
+<option>Dungeons and Dragons-Dragonlance </option>
+<option> European Literature-Belgian </option>
+<option> Media Tie In-Star Wars </option>
+<option>Health-Medicine </option>
+<option>Love user</option>
+<option> Humanities-Linguistics </option>
+<option> Art and Photography </option>
+<option> Animals-Anthropomorphic </option>
+<option>Education </option>
+<option> Fan Fiction </option>
+<option> Psychology-Psychoanalysis </option>
+<option>Literature-Marathi </option>
+<option>Cultural-France user</option>
+<option> Northern Africa-Sudan </option>
+<option> Historical Romance-Western Historical Romance </option>
+<option> Yaoi-Shounen Ai </option>
+<option> Science-Chemistry </option>
+<option> Religion-Wicca </option>
+<option>GLBT-Lesbian </option>
+<option> Crafts-Quilting </option>
+<option>Cultural-Brazil </option>
+<option>Cultural-Poland </option>
+<option> Northern Africa-Morocco </option>
+<option> Childrens-Pre K </option>
+<option> European Literature-Ukrainian Literature </option>
+<option> History-Microhistory </option>
+<option>Sociology </option>
+<option> Academic </option>
+<option> Fairy Tales-Cinderella </option>
+<option>Media Tie In-Doctor Who </option>
+<option>Science-Physics </option>
+<option> Marvel-Spider Man </option>
+<option> Eastern Africa-Somalia </option>
+<option> Music-Rock N Roll </option>
+<option> True Story user</option>
+<option> Religion-Taoism </option>
+<option>Womens Fiction-Chick Lit user</option>
+<option> Sequential Art-Cartoon </option>
+<option> Sports-Horse Racing </option>
+<option> Folk Tales </option>
+<option> Reference-Trivia </option>
+<option> Church-Church History </option>
+<option> Historical Romance-Victorian Romance </option>
+<option> Christianity-Discipleship </option>
+<option>Mystery-Detective </option>
+<option>Asian Literature-Indonesian Literature </option>
+<option> Reference user</option>
+<option> Religion-Esoterica </option>
+<option> Cultural-Counter Culture </option>
+<option> Mystery-Paranormal Mystery </option>
+<option>Anthropology </option>
+<option> Anthropology-Ethnography </option>
+<option> Philosophy-Skepticism </option>
+<option> Eastern Africa-Eritrea </option>
+<option>Biography Memoir </option>
+<option> Graphic Novels Manga </option>
+<option> Anarchism </option>
+<option> Tragedy </option>
+<option>Literature-Russian Literature </option>
+<option> Poetry Plays </option>
+<option> Fairy Tales-Princesses </option>
+<option> Romance-Category Romance </option>
+<option> Female Authors </option>
+<option> Family Law-Divorce </option>
+<option> Science Fiction-Military Science Fiction </option>
+<option> Reportage </option>
+<option> Esoterica-Alchemy </option>
+<option>Folklore </option>
+<option>Christian-Christian Non Fiction user</option>
+<option>Spirituality user</option>
+<option> Social Issues-Class </option>
+<option> Canon user</option>
+<option> Spirituality user</option>
+<option> Art user</option>
+<option>Paranormal-Ghosts </option>
+<option> Young Adult-Young Adult Fantasy user</option>
+<option> American History-American Civil War user</option>
+<option> Health-Medicine user</option>
+<option> LGBT user</option>
+<option>Health-Mental Health user</option>
+<option> Christian user</option>
+<option> Historical-Medieval user</option>
+<option> Science Fiction-Aliens user</option>
+<option>Self Help user</option>
+<option> Feminism-Womens Studies </option>
+<option>Cultural-India user</option>
+<option>Cultural-Africa user</option>
+<option> Music user</option>
+<option> Earth-The World user</option>
+<option> Classics user</option>
+<option> Romance-Christian Romance user</option>
+<option>American-Southern user</option>
+<option> Christian Fiction user</option>
+<option>Nature-Outdoors </option>
+<option>Religion-Christianity user</option>
+<option> Science Fiction-Alternate History user</option>
+<option>Childrens-Chapter Books </option>
+<option>War-World War II user</option>
+<option>Christian user</option>
+<option> Sociology-Abuse -</option>
+<option>Classics user</option>
+<option>Sexuality user</option>
+<option> Food and Drink-Cooking user</option>
+<option> History-Russian History user</option>
+<option> Cultural-Russia -</option>
+<option> Occult-Tarot user</option>
+<option> Mathematics-Number user</option>
+<option>Adventure-Survival </option>
+<option> Gothic-Gothic Romance </option>
+<option> Asian Literature-Indonesian Literature user</option>
+<option>Politics user</option>
+<option> Computer Science-Programming </option>
+<option>Reference user</option>
+<option> Science-Physics user</option>
+<option> Pop Culture-Nerd user</option>
+<option> Computer Science-Computers </option>
+<option> Science-Engineering </option>
+<option>Adventure user</option>
+<option> Historical-Edwardian user</option>
+<option>Literature-American user</option>
+<option> Labor user</option>
+<option> Politics-Government user</option>
+<option>Thriller-Mystery Thriller user</option>
+<option>Religion-Theology user</option>
+<option> Science Fiction -</option>
+<option>Self Help-Personal Development user</option>
+<option> Religion-Paganism </option>
+<option> History-Prehistory </option>
+<option> War-Military Fiction user</option>
+<option> Childrens-Picture Books user</option>
+<option> Literature-European Literature </option>
+<option>European Literature-Polish Literature user</option>
+<option> Humanities-Linguistics user</option>
+<option> Reference-Research user</option>
+<option> Favorites user</option>
+<option> Plays-Theatre user</option>
+<option> Biography user</option>
+<option> Biography-Autobiography user</option>
+<option>Mystery user</option>
+<option>Adult Fiction-Erotica user</option>
+<option> Erotica-BDSM user</option>
+<option>Fantasy-Magic user</option>
+<option> Alcohol-Booze </option>
+<option> Alcohol-Cocktails </option>
+<option>Category Romance-Harlequin </option>
+<option> Philosophy-Deception </option>
+<option> Harlequin-Harlequin Romance </option>
+<option>Cultural-Portugal </option>
+<option>Music user</option>
+<option> Museology-Museums </option>
+<option> Museology </option>
+<option>Sociology user</option>
+<option> Cultural-France user</option>
+<option> Neuroscience-Brain </option>
+<option>Urban user</option>
+<option> Romance-Historical Romance user</option>
+<option>Young Adult-Teen user</option>
+<option>Anthologies-Collections user</option>
+<option> Spy Thriller-Espionage user</option>
+<option>Horror user</option>
+<option> Womens Fiction-Chick Lit user</option>
+<option> Art-Drawing </option>
+<option> Science-Biology user</option>
+<option>Religion-Christianity </option>
+<option>Historical-Historical Fiction user</option>
+<option>Cultural-Australia user</option>
+<option> Cultural-China user</option>
+<option> Southern Africa-Botswana </option>
+<option> Earth-The World </option>
+<option> Science-Agriculture </option>
+<option> Business user</option>
+<option> Fantasy-Magic user</option>
+<option> Fantasy-Dragons user</option>
+<option> GLBT-Queer user</option>
+<option>Writing-Books About Books user</option>
+<option> Religion-Cults user</option>
+<option>Travel user</option>
+<option> History-World History user</option>
+<option>Historical user</option>
+<option>Religion-Faith user</option>
+<option> Christianity-New Testament user</option>
+<option>Fantasy-Dragons </option>
+<option> Gardening-Horticulture </option>
+<option> Paranormal-Wizards user</option>
+<option> Urban user</option>
+<option>Science Fiction Fantasy user</option>
+<option>Science user</option>
+<option> Animals-Cats user</option>
+<option> Romance-African American Romance </option>
+<option> Adult Fiction user</option>
+<option>Sequential Art-Comic Strips </option>
+<option> Animals user</option>
+<option> Architecture </option>
+<option> Computer Science-Coding </option>
+<option>Law </option>
+<option> Literature-American user</option>
+<option>Animals-Animal Fiction </option>
+<option> Folklore user</option>
+<option>Romance-Love Story user</option>
+<option>Northern Africa-Egypt user</option>
+<option>Mental Health-Mental Illness </option>
+<option> Literature user</option>
+<option> Adventure-Survival user</option>
+<option> Media Tie In-Doctor Who </option>
+<option> Book Club user</option>
+<option>Biography Memoir user</option>
+<option> Cultural-Africa user</option>
+<option>Roman user</option>
+<option>War-Military Fiction user</option>
+<option> Mystery-Golden Age Mystery </option>
+<option> Sequential Art-Komik </option>
+<option> Manga-Manga Romance user</option>
+<option> Manga-Shojo user</option>
+<option> Anthologies user</option>
+<option> Social Science-Social Media </option>
+<option> Paranormal-Fairies user</option>
+<option>Kids user</option>
+<option>Literature-English Literature user</option>
+<option>Apocalyptic-Post Apocalyptic </option>
+<option> Psychology-Counselling user</option>
+<option>Medical </option>
+<option> Literature-Russian Literature user</option>
+<option> Writing-Essays user</option>
+<option>Cultural-China user</option>
+<option> Cultural-Asia user</option>
+<option>Literature-European Literature user</option>
+<option>Religion-Islam user</option>
+<option>Childrens-Middle Grade user</option>
+<option> Polyamorous-Harem </option>
+<option> Cultural user</option>
+<option> Stories </option>
+<option> Biography Memoir user</option>
+<option>Couture-Fashion </option>
+<option> Crafts-Sewing </option>
+<option>Literature-Banned Books user</option>
+<option> Religion-God user</option>
+<option>Fairies-Fae </option>
+<option> European Literature-Italian Literature user</option>
+<option> Judaism-Judaica </option>
+<option> Occult-Mysticism </option>
+<option>European Literature-Romanian Literature user</option>
+<option>Prayer </option>
+<option> Paranormal Urban Fantasy </option>
+<option>Fantasy-Paranormal user</option>
+<option>Language-Communication user</option>
+<option> Novella user</option>
+<option>Science-Engineering user</option>
+<option> Fantasy-Urban Fantasy user</option>
+<option> New York user</option>
+<option> European Literature-Finnish Literature user</option>
+<option>Comics-Superheroes </option>
+<option>Sequential Art-Comics user</option>
+<option> Graphic Novels Comics user</option>
+<option>Architecture </option>
+<option>Business-Amazon user</option>
+<option>Romance-M M Romance user</option>
+<option>Suspense user</option>
+<option>Diary-Journal user</option>
+<option> Mountaineering-Climbing user</option>
+<option> Textbooks user</option>
+<option>Humor user</option>
+<option>Unfinished user</option>
+<option>Modern user</option>
+<option> Mystery-Murder Mystery user</option>
+<option>Textbooks </option>
+<option> Academic user</option>
+<option> Philosophy-Logic </option>
+<option>Romance-Romantic Suspense user</option>
+<option>Christian Fiction user</option>
+<option> Category Romance-Mills and Boon </option>
+<option> The United States Of America user</option>
+<option>Paranormal-Demons user</option>
+<option>Sports-Hockey </option>
+<option> Art-Graffiti user</option>
+<option> Social Science-Social Media user</option>
+<option>Religion-Judaism </option>
+<option> Romance-Interracial Romance </option>
+<option>Romance-Historical Romance user</option>
+<option> Religion-Christianity user</option>
+<option> Young Adult-High School user</option>
+<option> Environment-Green user</option>
+<option> Diary user</option>
+<option> Feminism-Womens Studies user</option>
+<option> Science Fiction-Time Travel user</option>
+<option> Harlequin-Harlequin Desire </option>
+<option> Sports-Sports user</option>
+<option> Disability user</option>
+<option>Fantasy-Urban Fantasy user</option>
+<option>Asian Literature-Indonesian Literature user</option>
+<option> Science user</option>
+<option>Business-Management user</option>
+<option>Fantasy-High Fantasy user</option>
+<option> Young Adult-Teen user</option>
+<option> Sequential Art-Comic Strips user</option>
+<option> Gothic user</option>
+<option>Inspirational user</option>
+<option> History-Food History </option>
+<option>Sports-Fitness user</option>
+<option> Young Adult-Young Adult Contemporary user</option>
+<option> Romantic user</option>
+<option> Literature-Jewish user</option>
+<option> Fantasy-Mythology user</option>
+<option> European Literature-Romanian Literature user</option>
+<option>Romance-Erotic Romance user</option>
+<option> Crime-True Crime user</option>
+<option> Death user</option>
+<option> Mystery-Noir user</option>
+<option> Love user</option>
+<option>Mystery-Cozy Mystery user</option>
+<option>Cultural-Italy user</option>
+<option> Nature-Outdoors user</option>
+<option> Travel user</option>
+<option>Family user</option>
+<option> Religion-Islam user</option>
+<option> Academic-Students </option>
+<option>Fan Fiction </option>
+<option>Biblical Fiction </option>
+<option>European Literature-French Literature </option>
+<option> Animals-Animal Fiction user</option>
+<option>Feminism user</option>
+<option>Sci Fi Fantasy user</option>
+<option>Esoterica-Alchemy </option>
+<option> Fantasy-Dark Fantasy user</option>
+<option> Parenting user</option>
+<option> Family user</option>
+<option>Anthologies user</option>
+<option>Currency-Money </option>
+<option>Young Adult-Young Adult Paranormal user</option>
+<option>World War II-Holocaust user</option>
+<option>European Literature-Scandinavian Literature </option>
+<option>Adult user</option>
+<option> Sequential Art-Comics -</option>
+<option> Comics-Superheroes user</option>
+<option>Young Adult-High School user</option>
+<option>Social Issues-Class user</option>
+<option> Economics-Frugal user</option>
+<option> Science Fiction-Utopia </option>
+<option>Culture-Society user</option>
+<option> Academic-School user</option>
+<option> Mystery-Detective user</option>
+<option>Environment </option>
+<option> Conservation </option>
+<option>Central Africa-Democratic Republic Of The ... user</option>
+<option> Audiobook user</option>
+<option> Historical-Stuart </option>
+<option>Religion-Paganism </option>
+<option> M M Romance-M M Horror user</option>
+<option> Eastern Africa-Tanzania </option>
+<option> Fantasy-Heroic Fantasy user</option>
+<option>Book Club user</option>
+<option> Historical-Victorian user</option>
+<option>Cultural-Canada user</option>
+<option> Tragedy user</option>
+<option>Christianity-Catholic </option>
+<option> Womens user</option>
+<option> Romance-Contemporary Romance user</option>
+<option>Religion-Judaism user</option>
+<option>Fantasy-Mythology user</option>
+<option> Religion-Faith user</option>
+<option> European Literature-Portuguese Literature user</option>
+<option>Own </option>
+<option>Adult Fiction user</option>
+<option>History- user</option>
+<option>Psychology-Counselling </option>
+<option>Mystery-Noir user</option>
+<option> Diary-Journal user</option>
+<option> Race user</option>
+<option>Shapeshifters-Werewolves user</option>
+<option>Historical-Medieval </option>
+<option> Academic-Teachers user</option>
+<option> Education user</option>
+<option>Religion-Buddhism user</option>
+<option>True Story </option>
+<option>Occult-Mysticism user</option>
+<option>Shapeshifters-Werewolves </option>
+<option>Biography-Autobiography </option>
+<option>GLBT-Queer user</option>
+<option> Sexuality user</option>
+<option>Manga-Yaoi </option>
+<option> Literature-Post Colonial </option>
+<option>Occult user</option>
+<option>Childrens-Juvenile user</option>
+<option> Feminism user</option>
+<option>Games-Gaming user</option>
+<option> Cultural-Greece user</option>
+<option>Audiobook user</option>
+<option>Media Tie In-Star Trek </option>
+<option>Comics-Comic Book user</option>
+<option> Sequential Art-Comics user</option>
+<option>Artificial Intelligence </option>
+<option> Romance-Fantasy Romance user</option>
+<option> Culture-Film user</option>
+<option> Young Adult-Coming Of Age user</option>
+<option> Religion-Judaism user</option>
+<option>European Literature-Spanish Literature user</option>
+<option>Womens Fiction user</option>
+<option> Self Help-Personal Development user</option>
+<option> Productivity user</option>
+<option> Environment-Nature user</option>
+<option>Witchcraft </option>
+<option>Leadership user</option>
+<option> Horror-Bizarro Fiction </option>
+<option> Cultural-Ukraine user</option>
+<option> Animals-Dogs user</option>
+<option> Science Fiction-Dying Earth </option>
+<option> Romance-Romantic Suspense user</option>
+<option>Computer Science-Algorithms user</option>
+<option> Computer Science-Software user</option>
+<option> Writing-Journalism user</option>
+<option> Asian Literature-Indian Literature user</option>
+<option>Economics-Finance user</option>
+<option> Magical Realism user</option>
+<option> Cultural-Denmark user</option>
+<option>Speculative Fiction user</option>
+<option> Science Fiction-Military Science Fiction user</option>
+<option> Conservation user</option>
+<option>Business-Entrepreneurship user</option>
+<option> Business-Management user</option>
+<option> Social Movements-Social Justice user</option>
+<option> Social Science user</option>
+<option> Sports-Fitness user</option>
+<option> International Dev...-Human Development </option>
+<option> Sexuality-Sex Work </option>
+<option> European Literature-Bulgarian Literature </option>
+<option>Media Tie In </option>
+<option> Category Romance-Loveswept </option>
+<option> Roman user</option>
+<option> War-World War I user</option>
+<option> Romance-African American Romance user</option>
+<option> Western Africa-Liberia </option>
+<option> Religion-Hinduism user</option>
+<option> Politics-Government </option>
+<option> Science Fiction-Cyberpunk user</option>
+<option> Music-Jazz </option>
+<option>Sociology-Abuse user</option>
+<option> Dark user</option>
+<option> History-Medieval History user</option>
+<option> Diary-Journaling user</option>
+<option> Christianity-Old Testament </option>
+<option> Games-Chess </option>
+<option> Biology-Ecology user</option>
+<option>Womens user</option>
+<option>Computers-Internet user</option>
+<option> Space-Space Opera user</option>
+<option>Travel-Travelogue </option>
+<option>History-World History user</option>
+<option> Food and Drink-Culinary </option>
+<option>Love Inspired-Love Inspired Suspense </option>
+<option> Category Romance-Love Inspired </option>
+<option>Crafts-Quilting </option>
+<option>History-Ancient History </option>
+<option> Punk-Punx </option>
+<option> Sci Fi Fantasy user</option>
+<option> Romance-M M Romance user</option>
+<option> Witchcraft </option>
+<option> Hugo Awards </option>
+<option> Cultural-International user</option>
+<option>Science Fiction-Alternate History user</option>
+<option> Southern Africa-Namibia </option>
+<option>Biology-Evolution </option>
+<option> Islam-Muslimah </option>
+<option>Sports-Cycling </option>
+<option>Family Law-Fostering </option>
+<option>Fantasy -</option>
+<option>Crime-True Crime user</option>
+<option>Realistic Fiction-Slice Of Life user</option>
+<option> Social user</option>
+<option>Crafts-Sewing </option>
+<option>Young Adult-Young Adult Romance </option>
+<option> Gay-Gay Fiction user</option>
+<option>Art user</option>
+<option> Anthropology user</option>
+<option> Philosophy-Theory user</option>
+<option> Social Justice-Social Change </option>
+<option> Fairies-Fae user</option>
+<option>African Literature-Egyptian Literature user</option>
+<option>Environment-Nature user</option>
+<option> Gardening user</option>
+<option>Self Help -</option>
+<option>Romance-African American Romance </option>
+<option> Romance-M F Romance user</option>
+<option>Culture-Pop Culture user</option>
+<option>Drama user</option>
+<option> LGBT-Gay user</option>
+<option>Short Stories-Short Story Collection user</option>
+<option>Fairy Tales-Cinderella </option>
+<option> Food and Drink user</option>
+<option> Cultural-Canada user</option>
+<option> Leadership user</option>
+<option> European Literature-Spanish Literature user</option>
+<option> Futuristic user</option>
+<option>Christian-Christian Living </option>
+<option>Classics-Cult Classics user</option>
+<option>Romance-Interracial Romance </option>
+<option>Poetry -</option>
+<option> Literature -</option>
+<option>Romance-Contemporary Romance user</option>
+<option> Dc Comics-Superman </option>
+<option>Pop Culture-Nerd </option>
+<option> Cultural-India user</option>
+<option>True Story user</option>
+<option>Thriller-Psychological Thriller </option>
+<option> Culture-Pop Culture user</option>
+<option> Food and Drink-Cookbooks user</option>
+<option>Sequential Art-Bande DessinÃÂ©e user</option>
+<option> Fat-Fat Acceptance </option>
+<option> Health-Fat </option>
+<option>Animals user</option>
+<option>Sports-Fitness </option>
+<option> Art-Photography -</option>
+<option> Computers-Hackers user</option>
+<option> Language-Writing user</option>
+<option> Surreal </option>
+<option> Cultural-Japan user</option>
+<option> Literature-Asian Literature user</option>
+<option>New York </option>
+<option>Academic-School user</option>
+<option> Romance -</option>
+<option> Historical-Historical Fiction -</option>
+<option> Humor-Comedy -</option>
+<option> Pseudoscience-Conspiracy Theories user</option>
+<option> European Literature-Czech Literature user</option>
+<option> Games-Video Games user</option>
+<option>Nurses-Nursing user</option>
+<option>European Literature-Hungarian Literature </option>
+<option> Travel-Travelogue user</option>
+<option> World War II-Holocaust user</option>
+<option> United States </option>
+<option>Games-Chess </option>
+<option>Science Fiction-Cyberpunk </option>
+<option> M M Romance-M M Fantasy </option>
+<option>Fantasy-Fairy Tales user</option>
+<option>Literature-Asian Literature user</option>
+<option>Criticism-Literary Criticism user</option>
+<option> Cultural-Pakistan user</option>
+<option> Social Issues user</option>
+<option> LGBT-Asexual </option>
+<option>Sexuality </option>
+<option> Sociology-Abuse user</option>
+<option> Science Fiction R...-Futuristic Romance </option>
+<option>Futuristic user</option>
+<option>Science Fiction Fantasy </option>
+<option> Health-Nutrition user</option>
+<option> Cultural-Romania user</option>
+<option>Animals-Cats </option>
+<option>Literature-Black Literature user</option>
+<option>Comics Manga user</option>
+<option>Self Help-Personal Development </option>
+<option>Cultural-Portugal user</option>
+<option> Holiday-Halloween user</option>
+<option> Northern Africa-Libya </option>
+<option> Africa-Northern Africa </option>
+<option> Computer Science-Algorithms </option>
+<option> Academic-Academics </option>
+<option>Asian Literature-Japanese Literature </option>
+<option>European Literature-Swedish Literature </option>
+<option> Manga-Josei </option>
+<option>War-World War I user</option>
+<option>Cultural-Germany </option>
+<option> Cultural-African American user</option>
+<option> Dungeons and Dragons-Dragonlance </option>
+<option> Engineering-Electrical Engineering </option>
+<option> Environment-Sustainability </option>
+<option> Thriller-Mystery Thriller -</option>
+<option> Art-Visual Art </option>
+<option>Literature-st Century user</option>
+<option> Native Americans </option>
+<option> Paranormal-Esp </option>
+<option>Academic-Read For School user</option>
+<option> Academic-School -</option>
+<option> Lds-Lds Fiction user</option>
+<option> Medical user</option>
+<option>Economics user</option>
+<option>Cultural-Israel </option>
+<option>Central Africa-Angola </option>
+<option>European Literature-German Literature user</option>
+<option> Occult user</option>
+<option> European Literature-British Literature user</option>
+<option>Games-Role Playing Games </option>
+<option>Cultural-Germany user</option>
+<option> Aircraft-Helicopters </option>
+<option>Illness-Disease user</option>
+<option>Parenting-Adoption </option>
+<option> Family Law-Divorce user</option>
+<option> Apocalyptic-Post Apocalyptic user</option>
+<option>Science Fiction-Time Travel user</option>
+<option> European Literature-German Literature user</option>
+<option>Religion -</option>
+<option> Realistic Fiction-Slice Of Life user</option>
+<option> Cultural-Italy user</option>
+<option> Cultural-Spain user</option>
+<option>Young Adult-Coming Of Age </option>
+<option>Religion-Hinduism user</option>
+<option>Childrens-Young Readers user</option>
+<option>Science-Computer Science </option>
+<option> Science Nature user</option>
+<option>European Literature-British Literature user</option>
+<option> Westerns-Weird West </option>
+<option>Asian Literature-Indian Literature user</option>
+<option> Transport-Motorcycle </option>
+<option> Childrens-Nursery Rhymes </option>
+<option>Eastern Africa-Ethiopia </option>
+<option>Warfare-Fighters </option>
+<option> Far Right-Ku Klux Klan user</option>
+<option>Adventure-Survival user</option>
+<option> Social Issues-Activism user</option>
+<option> Central Africa-Angola </option>
+<option> Fairy Tales-Fairy Tale Retellings user</option>
+<option>Action </option>
+<option>Cultural-Ireland </option>
+<option> Science Fiction-Alternate Universe </option>
+<option> Martial Arts-Mixed Martial Arts </option>
+<option> Diary-Journal </option>
+<option>European Literature-Dutch Literature user</option>
+<option> Politics-Presidents user</option>
+<option> Young Adult -</option>
+<option>European Literature-Albanian Literature user</option>
+<option>Military History-Civil War user</option>
+<option> Cultural-Lebanon user</option>
+<option> Culture-Cultural Studies </option>
+<option>Cultural-Bangladesh </option>
+<option> Computers-Hackers </option>
+<option>Mystery-Detective user</option>
+<option> Physics-Quantum Mechanics </option>
+<option>Biology-Neuroscience </option>
+<option>Culture-Film user</option>
+<option>Young Adult-Young Adult Fantasy user</option>
+<option>Business-Management </option>
+<option>Science Fiction-Cyberpunk user</option>
+<option> Literature-African Literature user</option>
+<option> Law user</option>
+<option> Nature-Plants user</option>
+<option> Doctors </option>
+<option> Cultural-Bangladesh </option>
+<option>Mythology-Mermaids user</option>
+<option>Literature-th Century user</option>
+<option>Education user</option>
+<option>Romance-Lesbian Romance </option>
+<option> Sequential Art-Bande DessinÃÂ©e user</option>
+<option> LGBT-Bisexual </option>
+<option>Animals-Birds </option>
+<option>Football </option>
+<option> Fiction -</option>
+<option> Philosophy-Thelema </option>
+<option> Mythology-Mermaids user</option>
+<option> Art and Photography user</option>
+<option> Pseudoscience-Cryptozoology </option>
+<option> Relationships user</option>
+<option> Fantasy-Epic Fantasy user</option>
+<option> Diary-Journaling </option>
+<option>Polyamory </option>
+<option> Childrens-School Stories </option>
+<option> American-African American Literature user</option>
+<option> Geology-Palaeontology </option>
+<option> Academic-Grad School </option>
+<option> German History-Nazi Party </option>
+<option>Romance-Interracial Romance user</option>
+<option> Computers-Internet </option>
+<option> History-Archaeology </option>
+<option>New Adult user</option>
+<option> Fantasy -</option>
+<option>Environment user</option>
+<option> Classics-Modern Classics user</option>
+<option>Literature-Jewish </option>
+<option>Romance-Fantasy Romance </option>
+<option>Magical Realism user</option>
+<option>Comics-Superheroes user</option>
+<option> Judaism-Judaica user</option>
+<option> Military History-Naval History </option>
+<option> Pulp user</option>
+<option>Romance-M F Romance user</option>
+<option>Gothic </option>
+<option>Gay Romance-Gay For You user</option>
+<option>Health-Medicine user</option>
+<option> Category Romance-Harlequin user</option>
+<option>Business-Amazon </option>
+<option>Football user</option>
+<option> Fantasy-Weird Fiction user</option>
+<option>LGBT user</option>
+<option> Westerns user</option>
+<option> Religion-Wicca user</option>
+<option> Games-Role Playing Games </option>
+<option> Romance-Science Fiction Romance user</option>
+<option> Reference-Field Guides </option>
+<option> Mythology-Arthurian user</option>
+<option>Adventure-Pirates user</option>
+<option>Alcohol-Beer </option>
+<option>Paranormal-Fairies </option>
+<option> Academic-College user</option>
+<option> Cultural-Bulgaria </option>
+<option>Mystery-Cozy Mystery </option>
+<option>Philosophy-Theory </option>
+<option>Health user</option>
+<option> Health-Illness </option>
+<option> Science-Computer Science user</option>
+<option> Science-Engineering user</option>
+<option> Sports-Figure Skating </option>
+<option> Media Tie In-Star Trek </option>
+<option> Politics-Far Right </option>
+<option> Speculative Fiction user</option>
+<option> Gender and Sexuality </option>
+<option> Lds-Mormonism user</option>
+<option>Pseudoscience-Cryptozoology </option>
+<option> Folklore-Monsters user</option>
+<option>Childrens-Juvenile </option>
+<option> Polyamory-Polygamy </option>
+<option> Pop Culture-Fandom </option>
+<option> European Literature-French Literature user</option>
+<option>Folk Tales-Fables user</option>
+<option> Philosophy-Eastern Philosophy </option>
+<option> Science-Mathematics user</option>
+<option> Labor </option>
+<option>Food and Drink-Cookbooks user</option>
+<option>Love </option>
+<option> Russia-Soviet History </option>
+<option>Witchcraft user</option>
+<option>Productivity </option>
+<option> North American Hi...-American History user</option>
+<option>New York user</option>
+<option>Romance-Christian Romance user</option>
+<option> Christian Fiction -</option>
+<option> Civil War-English Civil War </option>
+<option> Nurses-Nursing </option>
+<option>European Literature-French Literature user</option>
+<option>European Literature-Serbian Literature </option>
+<option>Asian Literature-Turkish Literature user</option>
+<option> History-European History user</option>
+<option> Romance-Love Story user</option>
+<option>Horror-Ghost Stories user</option>
+<option> Did Not Finish user</option>
+<option>Plays-Theatre user</option>
+<option>Cultural-Spain </option>
+<option>Spirituality-New Age user</option>
+<option> Mystery-Golden Age Mystery user</option>
+<option>Buisness user</option>
+<option>Cultural-Scotland user</option>
+<option>Classics-Modern Classics user</option>
+<option>Pseudoscience-Conspiracy Theories </option>
+<option> History-Japanese History </option>
+<option>Fantasy-Supernatural </option>
+<option>European Literature-Hungarian Literature user</option>
+<option> Art-Crafts user</option>
+<option> M M Romance-M M Paranormal </option>
+<option>Unfinished </option>
+<option> Kids user</option>
+<option> Transport-Cars </option>
+<option> Literature-European Literature user</option>
+<option>European Literature-Albanian Literature </option>
+<option> Art-Drawing user</option>
+<option> Art-Art Design user</option>
+<option> Eastern Africa-Uganda </option>
+<option>Space </option>
+<option> M M Romance-M M Contemporary </option>
+<option>Nurses-Nursing </option>
+<option> Environment-Green </option>
+<option> Eastern Africa-Zimbabwe </option>
+<option> Horror-Erotic Horror </option>
+<option>Gender-Gender Studies </option>
+<option> Criticism-Literary Criticism user</option>
+<option> Harlequin-Harlequin Blaze </option>
+<option> Philosophy-Metaphysics user</option>
+<option>Science Fiction-Alternate History </option>
+<option>Teaching user</option>
+<option> Philosophy -</option>
+<option> Star Trek-Star Trek Deep Space Nine </option>
+<option>Religion-Church </option>
+<option> Christianity-Ecclesiology </option>
+<option> Category Romance-Silhouette </option>
+<option> Paranormal-Ghosts user</option>
+<option> Historical Fiction-Naval Historical Fiction </option>
+<option>European Literature-Portuguese Literature user</option>
+<option>Religion-Esoterica </option>
+<option>Linguistics-Semiotics </option>
+<option> Social Issues </option>
+<option>Category Romance-Mills and Boon user</option>
+<option> Humanities-Classical Studies </option>
+<option> LGBT-Transgender user</option>
+<option>Nonfiction -</option>
+<option> Horror-Ghost Stories user</option>
+<option>Cultural-Turkish </option>
+<option> Sex Work-Strippers </option>
+<option>Language-Writing user</option>
+<option> Fantasy-Comic Fantasy </option>
+<option> Horror-Gothic Horror </option>
+<option> Christianity-Catholic user</option>
+<option> Geography-Cities </option>
+<option> Cultural-Poland user</option>
+<option> Football user</option>
+<option>Currency-Money user</option>
+<option> Finance-Personal Finance user</option>
+<option> Gamebooks-Choose Your Own Adventure </option>
+<option>LGBT-Asexual </option>
+<option> Academic-Grad School user</option>
+<option> American-American Fiction user</option>
+<option>Nobel Prize </option>
+<option>Biology-Ecology </option>
+<option>Magical Realism </option>
+<option> Religion-Scripture </option>
+<option> Media Tie In-Babylon  </option>
+<option>Eastern Africa-Rwanda </option>
+<option> Christianity-Lds user</option>
+<option>Audiobook </option>
+<option>Plays user</option>
+<option> Food and Drink-Culinary user</option>
+<option> Esoterica-Theosophy </option>
+<option> Occult-Mysticism user</option>
+<option>Culture-Pop Culture </option>
+<option> Eastern Africa-Burundi </option>
+<option>Science-Technology user</option>
+<option> European Literature-Albanian Literature </option>
+<option>Occult-Magick </option>
+<option> Witchcraft user</option>
+<option>Science Fiction-Apocalyptic </option>
+<option> Astronomy-Planets </option>
+<option> Cultural-Sweden user</option>
+<option> Museology-Curation user</option>
+<option>Biography-Autobiography user</option>
+<option> Mystery-Cozy Mystery user</option>
+<option>Disability </option>
+<option>Fairy Tales-Fairy Tale Retellings user</option>
+<option>Action user</option>
+<option> Central Africa-Republic Of The Congo </option>
+<option> Art-Woodwork </option>
+<option> History and Politics </option>
+<option> Transport-Railways user</option>
+<option>Gamebooks-Choose Your Own Adventure </option>
+<option>World Of Warcraft-Warcraft </option>
+<option>Religion-Wicca </option>
+<option>Cultural-Asia user</option>
+<option>Gardening user</option>
+<option>Gardening </option>
+<option>Neuroscience-Brain user</option>
+<option> Transgender-Cross Dressing </option>
+<option>Writing-Journalism </option>
+<option> Games-Game Design </option>
+<option> Horror -</option>
+<option>Teaching </option>
+<option>Cultural user</option>
+<option> Animals-Wolves user</option>
+<option>United States user</option>
+<option> Buddhism-Zen user</option>
+<option>Northern Africa-Morocco user</option>
+<option> Childrens-Juvenile user</option>
+<option> Games-Gaming user</option>
+<option> Harlequin-Harlequin Presents </option>
+<option>War-World War II </option>
+<option>Romance-M F Romance </option>
+<option>Animals-Dogs </option>
+<option> Polyamorous-Reverse Harem user</option>
+<option> Sequential Art-Graphic Non Fiction user</option>
+<option> Menage-M M F user</option>
+<option>Historical-Regency </option>
+<option>Holiday-Halloween </option>
+<option> Business-Entrepreneurship user</option>
+<option> Queer-Queer Lit </option>
+<option>Religion-Esoterica user</option>
+<option> LGBT-Genderqueer </option>
+<option> Favorites </option>
+<option> Comics Bd </option>
+<option> Manga-Manga Romance </option>
+<option>American-African American Literature user</option>
+<option> Travel-Walking </option>
+<option>Academic </option>
+<option> Couture-Fashion user</option>
+<option> Historical Romance-Western Historical Romance user</option>
+<option>Humanities-Language </option>
+<option> Writing-Books About Books user</option>
+<option> Romance-Clean Romance user</option>
+<option>Diary user</option>
+<option> Medicine-Psychiatry user</option>
+<option> Comics-Comic Book user</option>
+<option> Role Playing Games-World Of Darkness </option>
+<option>Own user</option>
+<option>Superheroes-Dc Comics </option>
+<option>Pornography user</option>
+<option>Race-Anti Racist user</option>
+<option> Western Africa-Benin </option>
+<option> Alcohol-Beer </option>
+<option> Food and Drink-Vegetarian </option>
+<option> Vegetarian-Vegetarianism </option>
+<option> Harlequin-Harlequin Nocturne </option>
+<option> Literature-Multicultural Literature </option>
+<option> Pseudoscience-Creation Science </option>
+<option>Philosophy-Metaphysics </option>
+<option> Reference-Dictionaries </option>
+<option>Cultural-Scotland </option>
+<option>Speculative Fiction </option>
+<option>Childrens-nd Grade </option>
+<option>Games-Game Design </option>
+<option> Number-Counting </option>
+<option> Harlequin-Harlequin Historical </option>
+<option>European Literature-Danish </option>
+<option>Horror-Bizarro Fiction </option>
+<option>Science-Geography </option>
+<option> Science-Earth Sciences user</option>
+<option>Animals-Horses user</option>
+<option>Polyamorous-Reverse Harem user</option>
+<option> Biology-Evolution user</option>
+<option> Futurism user</option>
+<option>Christian-Christian Living user</option>
+<option>Academic-School </option>
+<option> Cultural-Brazil user</option>
+<option> Cultural-Portugal user</option>
+<option> Transport-Bicycles user</option>
+<option> Mine </option>
+<option> M M Romance-M M Paranormal user</option>
+<option> GLBT-Lesbian user</option>
+<option>Christian-Christian Non Fiction </option>
+<option> Science Fiction-Dystopia -</option>
+<option> Asian Literature-Japanese Literature user</option>
+<option>European Literature-Swedish Literature user</option>
+<option>Asian Literature-Indian Literature </option>
+<option>Paranormal-Vampires -</option>
+<option> Teaching user</option>
+<option>Paranormal-Wizards </option>
+<option>Cultural-Romania </option>
+<option> Reference-Trivia user</option>
+<option> History and Politics user</option>
+<option> Media Tie In-Tv user</option>
+<option>School Stories-Boarding School </option>
+<option>Cultural-Russia user</option>
+<option> Short Stories -</option>
+<option> Cultural-Turkish user</option>
+<option>Epic user</option>
+<option> American-Southern user</option>
+<option> European Literature-Bulgarian Literature user</option>
+<option> Reference-Guides </option>
+<option>Esoterica-Theosophy </option>
+<option>Cultural-Lebanon </option>
+<option>Cultural-Italy </option>
+<option> Games-Gamebooks user</option>
+<option> Games-Gamebooks </option>
+<option> Adolescence </option>
+<option> Asian Literature-Chinese Literature user</option>
+<option> Folk Tales-Fables </option>
+<option>Occult-Tarot </option>
+<option> Computer Science-Computers user</option>
+<option> Jewellery </option>
+<option>Mythology-Greek Mythology user</option>
+<option> Alcohol-Wine </option>
+<option> Sex Work-Prostitution </option>
+<option> Mail Order Brides </option>
+<option>Literature-th Century </option>
+<option>Textbooks user</option>
+<option>Animals-Dogs user</option>
+<option> Comics Manga user</option>
+<option> Comics Bd user</option>
+<option>Realistic Fiction user</option>
+<option>Science-Mathematics user</option>
+<option> European Literature-Danish user</option>
+<option>Relationships user</option>
+<option>GLBT-Queer </option>
+<option>Humanities-Linguistics </option>
+<option>Art-Art Design </option>
+<option> Northern Africa-Egypt user</option>
+<option> Sequential Art user</option>
+<option>Religion-Atheism </option>
+<option>European Literature-Irish Literature </option>
+<option>Dc Comics-Wonder Woman </option>
+<option> Dc Comics-Superman user</option>
+<option> Plants-Herbs </option>
+<option> Romance-Interracial Romance user</option>
+<option> Africa-Eastern Africa </option>
+<option>Historical-Victorian user</option>
+<option> Cultural-Latin American user</option>
+<option> Childrens-nd Grade user</option>
+<option>Literature-Canadian Literature user</option>
+<option>Amish user</option>
+<option>Menage-M M F </option>
+<option> Classics-Classic Literature user</option>
+<option> Literature-Ancient user</option>
+<option> Fan Fiction user</option>
+<option>Female Authors user</option>
+<option> Asian Literature-Turkish Literature user</option>
+<option> Western Africa-Senegal </option>
+<option>Religion-Faith </option>
+<option> Eastern Africa-Rwanda user</option>
+<option>Humor-Comedy </option>
+<option> Colouring Books </option>
+<option> Cartography-Maps </option>
+<option> Geography-Cartography </option>
+<option>Church-Church History user</option>
+<option> Cryptids-Bigfoot user</option>
+<option> European Literature-Hungarian Literature user</option>
+<option> Religion-Esoterica user</option>
+<option>Retellings </option>
+<option>Comics-Comic Book </option>
+<option> Spirituality-New Age user</option>
+<option>Criticism-Literary Criticism </option>
+<option>Games-Role Playing Games user</option>
+<option>Military-Military History user</option>
+<option>Alcohol-Beer user</option>
+<option> Cities-Urban Studies </option>
+<option> Western Africa-Ivory Coast </option>
+<option>Science Fiction-Aliens user</option>
+<option>Dc Comics-Batman </option>
+<option>Romance-Science Fiction Romance </option>
+<option> Animals-Horses user</option>
+<option> Media Tie In user</option>
+<option>Young Adult-Teen </option>
+<option> Beer-Brewing </option>
+<option>Media Tie In user</option>
+<option> European Literature-Swedish Literature user</option>
+<option>Science Fiction-Aliens </option>
+<option> Christian -</option>
+<option> Space user</option>
+<option>Science-Natural History user</option>
+<option>Diary-Journal </option>
+<option>Art-Photography user</option>
+<option> Social Issues-Poverty user</option>
+<option>Feminism-Womens Studies user</option>
+<option>Diary </option>
+<option> Mathematics-Number </option>
+<option>Fantasy-High Fantasy </option>
+<option> Environment user</option>
+<option>Fan Fiction user</option>
+<option> International Dev...-Human Development user</option>
+<option>Gothic user</option>
+<option> Aeroplanes </option>
+<option> Games-Go </option>
+<option>Computer Science-Programming user</option>
+<option> Computer Science-Coding user</option>
+<option> Fantasy-High Fantasy user</option>
+<option>War user</option>
+<option> Politics-Political Science user</option>
+<option> Fat-Fat Acceptance user</option>
+<option>Spy Thriller-Espionage </option>
+<option> Horror-Erotic Horror user</option>
+<option> M M Romance-M M Science Fiction </option>
+<option> Amish user</option>
+<option>Tragedy user</option>
+<option> Dark Fantasy-Goth </option>
+<option>Cultural </option>
+<option> Buisness user</option>
+<option>Spirituality-New Age </option>
+<option>Philosophy-Eastern Philosophy user</option>
+<option> Architecture user</option>
+<option>Novella user</option>
+<option>History-European History user</option>
+<option> Star Trek-Star Trek The Next Generation </option>
+<option>Cultural-Iran </option>
+<option>Gamebooks-Choose Your Own Adventure user</option>
+<option> M M Romance-M M Historical Romance </option>
+<option>Food and Drink-Vegan user</option>
+<option> Esoterica-Theosophy user</option>
+<option>Romance-Paranormal Romance -</option>
+<option> Animals-Rabbits </option>
+<option> Health-Aspergers user</option>
+<option> Dc Comics-Wonder Woman </option>
+<option> Manga-Seinen user</option>
+<option> Media Tie In-Anime user</option>
+<option>Science-Library Science </option>
+<option> Library Science-Information Science </option>
+<option>Horror-Ghost Stories </option>
+<option> Star Trek-Star Trek Voyager </option>
+<option> Rock N Roll-Led Zeppelin </option>
+<option>Travel-Road Trip user</option>
+<option>Criticism user</option>
+<option> American Revolution-American Revolutionary War user</option>
+<option> Humanities-Language user</option>
+<option>Academic-College user</option>
+<option>Romantic user</option>
+<option> American-Americana user</option>
+<option> Historical Fiction-Historical Fantasy user</option>
+<option> History-Ancient History user</option>
+<option> Pseudoscience-Naturopathy </option>
+<option> Science-Vaccines </option>
+<option>Childrens-Chapter Books user</option>
+<option>Folk Tales </option>
+<option> Cultural-Belgium user</option>
+<option>Soccer user</option>
+<option>Cultural-Japan user</option>
+<option> Biography-Music Biography </option>
+<option> Criticism user</option>
+<option>Science-Physics user</option>
+<option> M M Romance-M M Mystery </option>
+<option> Fantasy-Low Fantasy user</option>
+<option> Africa-Western Africa </option>
+<option>Classics-Classic Literature user</option>
+<option> Disability-Disability Studies </option>
+<option>Novella </option>
+<option>Reference-Research user</option>
+<option>Folklore-Monsters user</option>
+<option>Cultural-Romania user</option>
+<option> Art-Photography user</option>
+<option> Sequential Art-Manga user</option>
+<option>European Literature-Finnish Literature user</option>
+<option>Gender user</option>
+<option> Pornography user</option>
+<option> European History-Spanish History </option>
+<option>Science-Computer Science user</option>
+<option>Holiday-Christmas user</option>
+<option>Parenting user</option>
+<option>Sports and Games-Games </option>
+<option> Childrens-Young Readers user</option>
+<option> Holiday user</option>
+<option> Food and Drink-Tea </option>
+<option>Christian Fiction -</option>
+<option> Amish -</option>
+<option> Transport-Aircraft </option>
+<option> Category Romance-Traditional Regency </option>
+<option> Reference-Guidebook user</option>
+<option>Cultural-Turkish user</option>
+<option> Cultural-Counter Culture user</option>
+<option>Academic user</option>
+<option>Adult -</option>
+<option> Esoterica-Spiritualism </option>
+<option>History-Local History user</option>
+<option> Humor-Jokes </option>
+<option>Christianity-Old Testament </option>
+<option>Sports and Games-Games user</option>
+<option> Folk Tales user</option>
+<option>Nature-Outdoors user</option>
+<option>Science-Technology </option>
+<option> Sports and Games-Games user</option>
+<option>Sports-Baseball user</option>
+<option> Harlequin-Hqn </option>
+<option>Paranormal-Demons </option>
+<option>Christianity-Evangelism </option>
+<option> Museology user</option>
+<option> Christian-Christian Living user</option>
+<option>Thriller-Psychological Thriller user</option>
+<option> Native Americans user</option>
+<option>European Literature-Belgian user</option>
+<option>Alcohol-Wine </option>
+<option> European Literature-Irish Literature user</option>
+<option>Holiday-Halloween user</option>
+<option>European Literature-British Literature </option>
+<option>Disability user</option>
+<option>Politics-Political Science user</option>
+<option> Humor-Comedian user</option>
+<option>Paranormal-Ghosts user</option>
+<option> Economics-Frugal </option>
+<option> Linguistics-Semiotics </option>
+<option>Race </option>
+<option> Subways-London Underground </option>
+<option> Cities-Urban Planning </option>
+<option> Business-Apple </option>
+<option>Humor-Jokes </option>
+<option>Political Science-International Relations </option>
+<option>Computer Science-Computers </option>
+<option> Anthropology-Ethnography user</option>
+<option> Sequential Art-Comix user</option>
+<option> Humanities </option>
+<option> Parenting-Adoption user</option>
+<option> GLBT-Queer Studies </option>
+<option>North American Hi...-American History </option>
+<option> History-Latin American History </option>
+<option> Philosophy-Eastern Philosophy user</option>
+<option> History-Local History user</option>
+<option> Nature-Ornithology </option>
+<option>Northern Africa-Egypt </option>
+<option> Esoterica-Astrology </option>
+<option> Childrens-Pre K user</option>
+<option> Environment-Peak Oil </option>
+<option> Female Authors user</option>
+<option>Christianity-New Testament </option>
+<option> History-Archaeology user</option>
+<option> Cities-Urbanism </option>
+<option> Linguistics-Semiotics user</option>
+<option> Food and Drink-Cuisine </option>
+<option> Food and Drink-Gastronomy </option>
+<option> Short Stories-Short Story Collection user</option>
+<option>European Literature-Czech Literature user</option>
+<option>Occult-Magick user</option>
+<option> Health-Health Care </option>
+<option> Psychology-Emotion </option>
+<option>Animals-Dinosaurs </option>
+<option> Design user</option>
+<option>Sexuality-Sex Work </option>
+<option>Pulp </option>
+<option> Western Africa-Sierra Leone </option>
+<option>Suspense -</option>
+<option> Holiday-Christmas user</option>
+<option> Wildlife </option>
+<option>Fantasy-Dark Fantasy </option>
+<option> Satanism </option>
+<option>Games-Gaming </option>
+<option> Northern Africa-Tunisia </option>
+<option>Literature-st Century </option>
+<option>Erotica-BDSM user</option>
+<option>Romance -</option>
+<option> Humor -</option>
+<option> Adult Fiction-Erotica -</option>
+<option> Art-Street Art </option>
+<option> Art-Graffiti </option>
+<option> Cultural-Kazakhstan </option>
+<option> Fat-Fat Studies </option>
+<option> Cultural-Bolivia </option>
+<option> Academic-Teachers </option>
+<option> Horror-Bizarro Fiction user</option>
+<option>Cultural-Counter Culture </option>
+<option> History-Oral History </option>
+<option> Horror-Victor Frankenstein </option>
+<option>Contemporary -</option>
+<option> Outdoors-Wilderness </option>
+<option>Animals-Wolves user</option>
+<option> American-American Classics </option></select></div>
+
+<div class="md-form mb-3">
+          <select class="form-control form-control-sm" name="int2" id="int2" required>
+<option value="" style="color:#888;">Interest Area</option>
+<option>Young Adult </option>
+<option> Mystery </option>
+<option> Romance </option>
+<option>Christian Fiction </option>
+<option> Christian </option>
+<option> Fiction </option>
+<option>Thriller </option>
+<option> Horror </option>
+<option>Economics-Finance </option>
+<option> Nonfiction </option>
+<option> Business </option>
+<option> Finance-Personal Finance </option>
+<option> Self Help </option>
+<option> Currency-Money </option>
+<option> Economics </option>
+<option> Self Help-Personal Development </option>
+<option> Audiobook </option>
+<option> Psychology </option>
+<option>Romance </option>
+<option> Historical-Historical Fiction </option>
+<option> Historical-Regency </option>
+<option> Romance-Historical Romance </option>
+<option> Historical </option>
+<option>Fiction </option>
+<option> American-Southern </option>
+<option> Gothic-Southern Gothic </option>
+<option>Sequential Art-Comics </option>
+<option> Sequential Art-Graphic Novels </option>
+<option> Sequential Art-Bande DessinÃÂ©e </option>
+<option> Humor </option>
+<option> Cultural-France </option>
+<option>Poetry </option>
+<option> Childrens </option>
+<option> Classics </option>
+<option>Fantasy </option>
+<option> Science Fiction-Steampunk </option>
+<option> Science Fiction </option>
+<option> Adventure </option>
+<option> Science Fiction Fantasy </option>
+<option> Adult </option>
+<option> Fantasy-Epic Fantasy </option>
+<option> Fantasy-Urban Fantasy </option>
+<option>Mystery </option>
+<option> Thriller </option>
+<option> Suspense </option>
+<option>Art </option>
+<option> Autobiography-Memoir </option>
+<option> Inspirational </option>
+<option> Language-Writing </option>
+<option>Nonfiction </option>
+<option> Science </option>
+<option> History </option>
+<option> Sexuality </option>
+<option> Anthropology </option>
+<option> Mystery-Crime </option>
+<option> Fantasy-Dragons </option>
+<option> Fantasy-High Fantasy </option>
+<option>History </option>
+<option> Cultural-Russia </option>
+<option> Military-Military History </option>
+<option> War </option>
+<option> War-Military Fiction </option>
+<option> Cultural-Ireland </option>
+<option> Womens Fiction-Chick Lit </option>
+<option> Contemporary </option>
+<option> Adult Fiction </option>
+<option> European Literature-Irish Literature </option>
+<option> Womens Fiction </option>
+<option> Adult Fiction-Erotica </option>
+<option> Young Adult </option>
+<option>Historical-Historical Fiction </option>
+<option> War-World War II </option>
+<option> World War II-Holocaust </option>
+<option>Horror </option>
+<option> Fantasy </option>
+<option> Shapeshifters-Werewolves </option>
+<option>Fantasy-Paranormal </option>
+<option> Romance-Paranormal Romance </option>
+<option> Magical Realism </option>
+<option> Thriller-Mystery Thriller </option>
+<option> Mystery-Historical Mystery </option>
+<option> European Literature-French Literature </option>
+<option> Literature </option>
+<option> Crime-True Crime </option>
+<option> Biography </option>
+<option>Romance-Paranormal Romance </option>
+<option> Fantasy-Paranormal </option>
+<option> Paranormal-Shapeshifters </option>
+<option> Fantasy-Magic </option>
+<option> Young Adult-Young Adult Fantasy </option>
+<option> Romance-Christian Romance </option>
+<option> Novels </option>
+<option> Cultural-Africa </option>
+<option> Eastern Africa-Malawi </option>
+<option> Biography Memoir </option>
+<option> Biography-Autobiography </option>
+<option> Academic-School </option>
+<option>World War II-Holocaust </option>
+<option> Short Stories </option>
+<option> European Literature-Polish Literature </option>
+<option> Science Fiction-Time Travel </option>
+<option>Plays </option>
+<option> Drama </option>
+<option> Fantasy-Mythology </option>
+<option> European Literature-German Literature </option>
+<option>Childrens-Picture Books </option>
+<option> North American Hi...-American History </option>
+<option> Military History-Civil War </option>
+<option> Politics </option>
+<option> Politics-Presidents </option>
+<option>Short Stories </option>
+<option> Childrens-Middle Grade </option>
+<option> School Stories-Boarding School </option>
+<option> Young Adult-Teen </option>
+<option> Young Adult-High School </option>
+<option> Realistic Fiction </option>
+<option> Animals </option>
+<option> Paranormal-Ghosts </option>
+<option> Fantasy-Supernatural </option>
+<option> Paranormal-Vampires </option>
+<option> Cultural-Poland </option>
+<option> Science Fiction-Dystopia </option>
+<option> Apocalyptic-Post Apocalyptic </option>
+<option> Science Fiction-Apocalyptic </option>
+<option> History-Russian History </option>
+<option> History-European History </option>
+<option> Literature-th Century </option>
+<option> New Adult </option>
+<option> Romance-Contemporary Romance </option>
+<option> Music </option>
+<option> Music-Musicians </option>
+<option> Religion-Buddhism </option>
+<option> Philosophy </option>
+<option> Spirituality </option>
+<option> Religion </option>
+<option> Cultural-Italy </option>
+<option> Historical Romance-Regency Romance </option>
+<option> Historical-Georgian </option>
+<option> European Literature-British Literature </option>
+<option> Cultural-Australia </option>
+<option> Action </option>
+<option> Adventure-Survival </option>
+<option> Science Fiction-Aliens </option>
+<option>Romance-Romantic Suspense </option>
+<option> Thriller-Legal Thriller </option>
+<option> Pseudoscience-Conspiracy Theories </option>
+<option> Fantasy-Dark Fantasy </option>
+<option> Northern Africa-Egypt </option>
+<option> Literature-American </option>
+<option> Romance-Romantic Suspense </option>
+<option>Classics </option>
+<option> Fairies-Fae </option>
+<option> Romance-Science Fiction Romance </option>
+<option>Erotica-BDSM </option>
+<option> Mystery-Detective </option>
+<option>Womens Fiction-Chick Lit </option>
+<option> Anthologies </option>
+<option>Cultural-Africa </option>
+<option> Western Africa-Ghana </option>
+<option> Literature-African Literature </option>
+<option> English History-Tudor Period </option>
+<option>Fantasy-Urban Fantasy </option>
+<option>New Adult </option>
+<option> Academic-College </option>
+<option> Sociology-Abuse </option>
+<option> Fantasy-Fairy Tales </option>
+<option> Fairy Tales-Beauty and The Beast </option>
+<option> Retellings </option>
+<option> Comics-Superheroes </option>
+<option> Cultural-Canada </option>
+<option> Science Fiction-Robots </option>
+<option> Literary Fiction </option>
+<option>Business </option>
+<option> Leadership </option>
+<option> Language-Communication </option>
+<option> Business-Management </option>
+<option> Buisness </option>
+<option> Law </option>
+<option> European Literature-Italian Literature </option>
+<option> Feminism </option>
+<option> Womens </option>
+<option> Childrens-Juvenile </option>
+<option> Family </option>
+<option> Childrens-Chapter Books </option>
+<option> Christianity-Lds </option>
+<option> Biblical Fiction </option>
+<option> Spy Thriller-Espionage </option>
+<option> Novella </option>
+<option>Philosophy </option>
+<option>Science Fiction </option>
+<option>Childrens-Middle Grade </option>
+<option>Christian </option>
+<option> Christian-Christian Living </option>
+<option> Religion-Christianity </option>
+<option> Relationships </option>
+<option> Religion-Theology </option>
+<option>Paranormal-Vampires </option>
+<option> Holiday-Christmas </option>
+<option> Holiday </option>
+<option> Childrens-Storytime </option>
+<option> Kids </option>
+<option>Sequential Art-Manga </option>
+<option> Sequential Art-Comics </option>
+<option>Childrens </option>
+<option>Novels </option>
+<option> Environment </option>
+<option> Book Club </option>
+<option> Environment-Climate Change </option>
+<option> Environment-Nature </option>
+<option> Romance-Erotic Romance </option>
+<option> Humor-Comedy </option>
+<option> Eastern Africa-Kenya </option> 
+<option>Religion </option>
+<option> Religion-Judaism </option>
+<option> Literature-Jewish </option>
+<option> Reference </option>
+<option> Mystery-Murder Mystery </option>
+<option> Cultural-Greece </option>
+<option> European History-French Revolution </option>
+<option>European Literature-Romanian Literature </option>
+<option> Poetry </option>
+<option>Sequential Art-Graphic Novels </option>
+<option> Cultural-Iran </option>
+<option> Sports-Sports </option>
+<option>Autobiography-Memoir </option>
+<option>Romance-Historical Romance </option>
+<option> Historical-Medieval </option>
+<option> Historical Romance-Medieval Romance </option>
+<option> Writing-Essays </option>
+<option> Art </option>
+<option>Asian Literature-Turkish Literature </option>
+<option> Cultural-Turkish </option>
+<option> Roman </option>
+<option>Realistic Fiction </option>
+<option> American History-American Civil War </option>
+<option> Cultural-Japan </option>
+<option> Asian Literature-Japanese Literature </option>
+<option> Russian History-Romanovs </option>
+<option> Cultural-Asia </option>
+<option> LGBT </option>
+<option> Romance-M M Romance </option>
+<option> Cultural-Latin American </option>
+<option> European Literature-Spanish Literature </option>
+<option>Dark </option>
+<option> Erotica-BDSM </option>
+<option> Cultural-Scotland </option>
+<option> Science-Geography </option>
+<option> Science-History Of Science </option>
+<option> Science-Technology </option>
+<option> Travel </option>
+<option> Science-Popular Science </option>
+<option> European Literature-Scandinavian Literature </option>
+<option> Cultural-Sweden </option>
+<option> Scandinavian Lite...-Nordic Noir </option>
+<option> Childrens-Picture Books </option>
+<option> Childrens-nd Grade </option>
+<option> Health-Mental Health </option>
+<option> Philosophy-Theory </option>
+<option> Sociology </option>
+<option>LGBT </option>
+<option> GLBT-Queer </option>
+<option> GLBT-Lesbian </option>
+<option> The United States Of America </option>
+<option> Horror-Zombies </option>
+<option> Young Adult-Young Adult Contemporary </option>
+<option> Young Adult-Coming Of Age </option>
+<option> Gothic </option>
+<option>Romance-M M Romance </option>
+<option> Westerns </option>
+<option> Historical-Victorian </option>
+<option> Futuristic </option>
+<option> Dark </option>
+<option> Literature-Russian Literature </option>
+<option> Speculative Fiction </option>
+<option> Sequential Art-Comic Strips </option>
+<option> Cultural-Germany </option>
+<option> Mystery-Noir </option>
+<option>Economics </option>
+<option> Crafts-Knitting </option>
+<option> Christian Fiction </option>
+<option>Science </option>
+<option> Artificial Intelligence </option>
+<option> Futurism </option>
+<option> Science-Physics </option>
+<option>Politics </option>
+<option> History-World History </option>
+<option>Humor </option>
+<option> Space-Space Opera </option>
+<option> Love </option>
+<option>Cultural-India </option>
+<option> Asian Literature-Indian Literature </option>
+<option> Paranormal-Wizards </option>
+<option> Paranormal-Demons </option>
+<option>Culture-Film </option>
+<option> Parenting </option>
+<option> Romance-Fantasy Romance </option>
+<option>Self Help </option>
+<option> Economics-Finance </option>
+<option> Writing-Journalism </option>
+<option>Science Fiction-Steampunk </option>
+<option> Graphic Novels Comics </option>
+<option> Comics-Comic Book </option>
+<option>Food and Drink-Food </option>
+<option> Food and Drink-Cooking </option>
+<option> Food and Drink-Food Writing </option>
+<option> Food and Drink-Foodie </option>
+<option> Food and Drink-Cookbooks </option>
+<option> Plays-Theatre </option>
+<option>Adult Fiction-Erotica </option>
+<option> Erotica-Menage </option>
+<option> Menage-M M F </option>
+<option>Sports-Sports </option>
+<option> Sports-Baseball </option>
+<option> Education </option>
+<option> Gender </option>
+<option> Animals-Cats </option>
+<option> Lds-Mormonism </option>
+<option> LGBT-Gay </option>
+<option> Space </option>
+<option> Plays </option>
+<option> European Literature-Danish </option>
+<option>Mystery-Crime </option>
+<option> Modern </option>
+<option> Cultural-India </option>
+<option> Art-Art History </option>
+<option>Media Tie In-Star Wars </option>
+<option> Mythology-Arthurian </option>
+<option> Cultural-African American </option>
+<option> Culture-Pop Culture </option>
+<option> Cultural </option>
+<option> Economics-Finance user</option>
+<option> Economics user</option>
+<option> Currency-Money user</option>
+<option>Music </option>
+<option> Literature-Asian Literature </option>
+<option> Cultural-Spain </option>
+<option> Games-Video Games </option>
+<option> Novels-Light Novel </option>
+<option> Literature-Banned Books </option>
+<option>Fat-Fat Acceptance user</option>
+<option> Poetry user</option>
+<option> Realistic Fiction-Slice Of Life </option>
+<option>Writing-Essays user</option>
+<option>LGBT-Gay </option>
+<option> Gay-Gay Fiction </option>
+<option> Novels user</option>
+<option>Fairy Tales-Fairy Tale Retellings </option>
+<option> Paranormal-Angels </option>
+<option>Fantasy-Magic </option>
+<option> Childrens user</option>
+<option> Romance user</option>
+<option> New Adult user</option>
+<option>Horror-Zombies </option>
+<option>Spirituality </option>
+<option>Science Fiction user</option>
+<option> Fantasy user</option>
+<option>Childrens user</option>
+<option> Childrens-Middle Grade user</option>
+<option> Science Fiction-Dystopia user</option>
+<option> Science Fiction Fantasy user</option>
+<option>Cultural-Japan </option>
+<option> Combat-Martial Arts </option>
+<option>Science Fiction-Dystopia user</option>
+<option> Religion-Hinduism </option>
+<option>Romance-Christian Romance </option>
+<option> Business-Amazon user</option>
+<option> Business-Amazon </option>
+<option>Science Fiction-Time Travel </option>
+<option> Nature-Outdoors </option>
+<option>Animals </option>
+<option> Childrens-Young Readers </option>
+<option> Animals-Dogs </option>
+<option>Contemporary user</option>
+<option> Adult Fiction-Erotica user</option>
+<option>Short Stories user</option>
+<option>Inspirational </option>
+<option> Cultural-Russia user</option>
+<option> Paranormal-Shapeshifters user</option>
+<option> Thriller-Psychological Thriller </option>
+<option> Animals-Animal Fiction </option>
+<option>Romance-Erotic Romance </option>
+<option> Action user</option>
+<option>Fiction user</option>
+<option> Fantasy-Supernatural user</option>
+<option> Horror user</option>
+<option> Animals-Birds </option>
+<option> Drama user</option>
+<option>Biography </option>
+<option> Warfare-Fighters </option>
+<option> Inspirational user</option>
+<option> Womens Fiction user</option>
+<option>Paranormal-Witches </option>
+<option> Young Adult user</option>
+<option> Childrens-Childrens Classics </option>
+<option> Anthologies-Collections user</option>
+<option>Religion-Theology </option>
+<option> Childrens-Chapter Books user</option>
+<option> Fiction user</option>
+<option> Contemporary user</option>
+<option>Childrens-Picture Books user</option>
+<option> Nonfiction user</option>
+<option> Autobiography-Memoir user</option>
+<option>Health-Mental Health </option>
+<option> Self Help user</option>
+<option>Contemporary </option>
+<option>Fairy Tales-Beauty and The Beast </option>
+<option> Retellings user</option>
+<option> Adult user</option>
+<option>Romance-Science Fiction Romance user</option>
+<option> Southern Africa-South Africa user</option>
+<option> Culture-Society </option>
+<option>Young Adult user</option>
+<option>Young Adult-Young Adult Romance user</option>
+<option> Thriller-Spy Thriller </option>
+<option> War-Terrorism </option>
+<option> War user</option>
+<option> Christianity-Catholic </option>
+<option>Psychology </option>
+<option> Religion-Faith </option>
+<option> Race-Anti Racist user</option>
+<option> Race </option>
+<option> New York </option>
+<option>Literature user</option>
+<option> Mystery user</option>
+<option> Social Issues-Poverty </option>
+<option>Pseudoscience-Numerology </option>
+<option> Occult-Divination </option>
+<option> Spirituality-New Age </option>
+<option> Occult-Tarot </option>
+<option>Health </option>
+<option> Food and Drink-Vegan </option>
+<option> Food and Drink-Food </option>
+<option> Health-Nutrition </option>
+<option> Food and Drink-Diets </option>
+<option>Autobiography-Memoir user</option>
+<option> Modern user</option>
+<option> Science Fiction-Steampunk user</option>
+<option> Short Stories user</option>
+<option> War-World War I </option>
+<option>Literature-Banned Books </option>
+<option>Food and Drink-Cooking user</option>
+<option> History user</option>
+<option> War-World War II user</option>
+<option>Mystery-Crime user</option>
+<option> Contemporary Romance-Sports Romance </option>
+<option> Christian-Christian Non Fiction </option>
+<option>Fantasy-Mythology </option>
+<option> Paranormal-Witches </option>
+<option> Religion-Church </option>
+<option>War-Military Fiction </option>
+<option> Romance-Lesbian Romance </option>
+<option> Polyamorous-Reverse Harem </option>
+<option>Harlequin-Harlequin Heartwarming </option>
+<option> Category Romance-Harlequin </option>
+<option>Novels user</option>
+<option> Historical-Historical Fiction user</option>
+<option>Race user</option>
+<option>Religion-Islam </option>
+<option> Lds-Lds Fiction </option>
+<option>Religion-Baha I </option>
+<option>Computer Science-Programming </option>
+<option> Science-Computer Science </option>
+<option> Computer Science-Software </option>
+<option> Computer Science-Technical </option>
+<option> Unfinished </option>
+<option>Fantasy user</option>
+<option> Paranormal-Fairies </option>
+<option>Science Fiction-Dystopia </option>
+<option>Spy Thriller-Espionage user</option>
+<option> Literature-Banned Books user</option>
+<option> Cultural-China </option>
+<option> Football </option>
+<option>Cultural-France </option>
+<option> Asian Literature-Indonesian Literature </option>
+<option> Writing-Books About Books </option>
+<option> Productivity </option>
+<option>Paranormal-Angels </option>
+<option> Criticism-Literary Criticism </option>
+<option> Fairy Tales-Fairy Tale Retellings </option>
+<option> European Literature-Swedish Literature </option>
+<option>Language-Writing </option>
+<option>Paranormal Urban Fantasy user</option>
+<option> Travel-Road Trip </option>
+<option> Psychology user</option>
+<option> Humor user</option>
+<option> New Adult-New Adult Romance </option>
+<option>Paranormal-Shapeshifters user</option>
+<option> Paranormal-Vampires user</option>
+<option> Shapeshifters-Werewolves user</option>
+<option> Fantasy-Paranormal user</option>
+<option> Literary Fiction user</option>
+<option> Humor-Comedy user</option>
+<option> Parenting-Adoption </option>
+<option> Eastern Africa-Ethiopia </option>
+<option> Business-Entrepreneurship </option>
+<option>Philosophy user</option>
+<option> Mental Health-Mental Illness user</option>
+<option> Health-Mental Health user</option>
+<option>Psychology user</option>
+<option>Novels-Light Novel </option>
+<option> Christian Fiction-Christian Fantasy </option>
+<option> Mental Health-Mental Illness </option>
+<option> Literature-Latin American Literature </option>
+<option>Writing-Essays </option>
+<option> American-Americana </option>
+<option>Aviation </option>
+<option> LGBT-Transgender </option>
+<option> Civil War-Spanish Civil War </option>
+<option> European Literature-Dutch Literature </option>
+<option> Religion-Baha I </option>
+<option>Travel </option>
+<option> European Literature-Czech Literature </option>
+<option>Romance user</option>
+<option> Occult </option>
+<option> Philosophy-Metaphysics </option>
+<option> Occult-Magick </option>
+<option> Science-Astronomy </option>
+<option>Fantasy-Supernatural user</option>
+<option> Cultural-Israel </option>
+<option>Erotica-Menage </option>
+<option> Thriller-Mystery Thriller user</option>
+<option>Design </option>
+<option> Dungeons and Dragons-Forgotten Realms </option>
+<option> Death </option>
+<option> Comics Manga </option>
+<option> Horror-Zombies user</option>
+<option> Philosophy user</option>
+<option> Music-Hip Hop </option>
+<option>Romance-Paranormal Romance user</option>
+<option> Paranormal-Angels user</option>
+<option> Science Fiction-Cyberpunk </option>
+<option> Harlequin-Harlequin Heartwarming </option>
+<option> Disability </option>
+<option>Nonfiction user</option>
+<option> Paranormal-Demons user</option>
+<option> Social Science </option>
+<option> Classics-Classic Literature </option>
+<option> Superheroes-Marvel </option>
+<option> Young Adult-Young Adult Romance </option>
+<option>Religion user</option>
+<option> Polyamory </option>
+<option> Mystery-Cozy Mystery </option>
+<option> Manga-Seinen </option>
+<option> Adventure-Pirates </option>
+<option>Cultural-Russia </option>
+<option> k </option>
+<option>Polyamorous-Reverse Harem </option>
+<option> Cultural-International </option>
+<option>Paranormal-Vampires user</option>
+<option> Animals-Horses </option>
+<option>Fantasy-Dark Fantasy user</option>
+<option>Horror-Zombies user</option>
+<option>Thriller-Mystery Thriller </option>
+<option> European Literature-Finnish Literature </option>
+<option>Sports-Sports user</option>
+<option> Sequential Art-Graphic Novels user</option>
+<option>Parenting </option>
+<option> Marriage </option>
+<option> Cultural-Tasmania </option>
+<option> Asian Literature-Turkish Literature </option>
+<option> Cultural-Brazil </option>
+<option> Anthologies-Collections </option>
+<option> Short Stories-Short Story Collection </option>
+<option> Biology-Neuroscience </option>
+<option> American-African American Literature </option>
+<option>Westerns </option>
+<option> Own </option>
+<option> Lds-Lds Non Fiction </option>
+<option> Heroic Fantasy-Sword and Sorcery </option>
+<option> Pulp </option>
+<option> Religion user</option>
+<option> Social Science-Social Work </option>
+<option> Psychology-Counselling </option>
+<option> Medical </option>
+<option> Suspense user</option>
+<option> Pop Culture-Nerd </option>
+<option>European Literature-Czech Literature </option>
+<option> European Literature-Serbian Literature </option>
+<option> Mythology-Greek Mythology </option>
+<option> Religion-Islam </option>
+<option> Urban </option>
+<option> Culture-Film </option>
+<option>Epic </option>
+<option> Cultural-Pakistan </option>
+<option>Westerns user</option>
+<option> Political Science-International Relations </option>
+<option>Anthropology user</option>
+<option>Religion-Buddhism </option>
+<option> Childrens-st Grade </option>
+<option> Religion-Theology user</option>
+<option>European Literature-Portuguese Literature </option>
+<option> Romantic </option>
+<option> Media Tie In </option>
+<option> Western Africa-Nigeria </option>
+<option>War-World War I </option>
+<option>Category Romance-Love Inspired </option>
+<option> Love Inspired-Love Inspired Historical </option>
+<option> Thriller user</option>
+<option> Mystery-Crime user</option>
+<option> Music-Musicals </option>
+<option> Literature-English Literature </option>
+<option>Romance-Contemporary Romance </option>
+<option>Leadership </option>
+<option> Horror-Ghost Stories </option>
+<option>Poetry user</option>
+<option> Literature-st Century user</option>
+<option> Sequential Art-Manga </option>
+<option>Literature </option>
+<option> Humanities-Language </option>
+<option> Fantasy-Heroic Fantasy </option>
+<option> Romance-M F Romance </option>
+<option> Horror-Splatterpunk </option>
+<option> Menage-M F M </option>
+<option> Art-Photography </option>
+<option> Prayer </option>
+<option> Mythology-Mermaids </option>
+<option>Paranormal-Witches user</option>
+<option> Romance-Paranormal Romance user</option>
+<option>Sports-Mountaineering </option>
+<option> Mountaineering-Climbing </option>
+<option>Academic-Read For School </option>
+<option>Cultural-Australia </option>
+<option> Health </option>
+<option> Medicine-Psychiatry </option>
+<option> Health user</option>
+<option>Business user</option>
+<option> Games-Gaming </option>
+<option> Sports and Games-Games </option>
+<option>Historical-Georgian </option>
+<option> Science-Mathematics </option>
+<option> Fantasy-Weird Fiction </option>
+<option> Religion-Atheism </option>
+<option> African Literature-Egyptian Literature </option>
+<option> Literature-Marathi </option>
+<option> Science Fiction-Alternate History </option>
+<option>Urban </option>
+<option>Reference </option>
+<option> Cultural-Belgium </option>
+<option>Feminism </option>
+<option> Young Adult-Young Adult Historical Fiction </option>
+<option>Sociology-Abuse </option>
+<option> Eastern Africa-Mozambique </option>
+<option> Diary </option>
+<option>Holiday-Christmas </option>
+<option> Science-Technology user</option>
+<option>Environment-Nature </option>
+<option>Thriller user</option>
+<option> Literature-th Century user</option>
+<option> Science Fiction user</option>
+<option>Sequential Art-Graphic Novels user</option>
+<option> Presidents-Us Presidents </option>
+<option> Romance-Western Romance </option>
+<option> Religion-God </option>
+<option> Historical Fiction-Historical Fantasy </option>
+<option> Marriage user</option>
+<option> Music-Hip Hop user</option>
+<option>Cultural-African American user</option>
+<option> Sequential Art-Webcomic </option>
+<option> Art-Crafts </option>
+<option> How To </option>
+<option> Reference-Research </option>
+<option> Textbooks </option>
+<option> Health-Medicine </option>
+<option> Manga-Manhwa </option>
+<option> Southern Africa-South Africa </option>
+<option>Adult </option>
+<option>Modern </option>
+<option> Literature-st Century </option>
+<option> European Literature-Romanian Literature </option>
+<option> Cultural-Romania </option>
+<option> Manga-Yuri </option>
+<option> Nobel Prize </option>
+<option> Science-Biology </option>
+<option> Biology-Evolution </option>
+<option> Mystery-Hard Boiled </option>
+<option> Historical-Plantagenet </option>
+<option> Academic-Read For School </option>
+<option> Animals-Dinosaurs </option>
+<option> Holiday-Halloween </option>
+<option> Biology-Ecology </option>
+<option> Nature-Plants </option>
+<option> Science-Natural History </option>
+<option> Science Nature </option>
+<option> Science Fiction-Hard Science Fiction </option>
+<option>Adventure </option>
+<option> Sports-Mountaineering </option>
+<option> Weird Fiction-New Weird </option>
+<option>Relationships </option>
+<option> Social </option>
+<option> Sports-Hockey </option>
+<option> Manga-Shojo </option>
+<option>Food and Drink-Cookbooks </option>
+<option> Northern Africa-Libya user</option>
+<option>European Literature-German Literature </option>
+<option>Crime-True Crime </option>
+<option>Lds-Lds Fiction </option>
+<option>European Literature-Finnish Literature </option>
+<option> Northern Africa-Algeria </option>
+<option> Gay Romance-Gay For You </option>
+<option> War-Soldiers </option>
+<option>Anthologies </option>
+<option> Sociology user</option>
+<option> Dc Comics-Batman </option>
+<option> Superheroes-Dc Comics </option>
+<option> Sequential Art-Comix </option>
+<option> Gender-Gender Studies </option>
+<option> Social Movements-Social Justice </option>
+<option>History user</option>
+<option>Animals-Horses </option>
+<option> Sports-Fitness </option>
+<option> American-American Fiction </option>
+<option>Cultural-African American </option>
+<option> Sci Fi Fantasy </option>
+<option> Cryptids-Yeti </option>
+<option> Folklore-Monsters </option>
+<option>Mythology-Mermaids </option>
+<option> Manga-Yaoi </option>
+<option> Yaoi-Boys Love </option>
+<option> European Literature-Portuguese Literature </option>
+<option> Cultural-Portugal </option>
+<option> Couture-Fashion </option>
+<option> True Story </option>
+<option>Mystery-Noir </option>
+<option>Marriage </option>
+<option>Science-Mathematics </option>
+<option>European Literature-Italian Literature </option>
+<option> Social Issues-Activism </option>
+<option> Sports-Basketball </option>
+<option> Epic </option>
+<option>Media Tie In-Buffy The Vampire Slayer </option>
+<option>Drama </option>
+<option>Biography user</option>
+<option>Sequential Art-Bande DessinÃÂ©e </option>
+<option>Cultural-China </option>
+<option> Travel-Travelogue </option>
+<option> Folklore </option>
+<option>Combat-Martial Arts </option>
+<option> Young Adult-Young Adult Paranormal </option>
+<option> United States user</option>
+<option> Realistic Fiction user</option>
+<option> Criticism </option>
+<option> Christian Fiction-Christian Historical Fiction </option>
+<option>Amish </option>
+<option> Christian Fiction-Amish Fiction </option>
+<option>Suspense </option>
+<option>Esoterica-Astrology </option>
+<option>European Literature-Bulgarian Literature </option>
+<option> Race-Anti Racist </option>
+<option> Classics-Modern Classics </option>
+<option> Lovecraftian-Cthulhu Mythos </option>
+<option> Horror-Lovecraftian </option>
+<option> Marvel-X Men </option>
+<option> Food and Drink </option>
+<option> Paranormal-Witches user</option>
+<option> Cultural-Denmark </option>
+<option> Fantasy-Fairy Tales user</option>
+<option> Transport </option>
+<option> Manga-Shonen </option>
+<option>Roman </option>
+<option> International Rel...-International Development </option>
+<option> Religion-Cults </option>
+<option> Classics-Cult Classics </option>
+<option> Soccer </option>
+<option> Sports-Cycling </option>
+<option>Occult </option>
+<option> Literature-Ancient </option>
+<option>Cultural-Pakistan </option>
+<option> Music-Punk user</option>
+<option> Politics user</option>
+<option> Romance-Love Story </option>
+<option>Food and Drink-Cooking </option>
+<option> How To user</option>
+<option> Science-Geology </option>
+<option> Media Tie In-Buffy The Vampire Slayer </option>
+<option> Biblical </option>
+<option> Fantasy-Unicorns </option>
+<option> World Of Warcraft-Warcraft </option>
+<option> Mmorpg-World Of Warcraft </option>
+<option> Menage-M M M </option>
+<option>Fantasy-Fairy Tales </option>
+<option> Historical user</option>
+<option> Romance-Erotic Romance user</option>
+<option> Adventure user</option>
+<option> Emergency Services-Police </option>
+<option> Academic-Academia </option>
+<option>Dungeons and Dragons-Forgotten Realms </option>
+<option> Gardening </option>
+<option>Sports-Baseball </option>
+<option> Unfinished user</option>
+<option> History-Ancient History </option>
+<option>Business-Amazon -</option>
+<option> Mythology-Gods </option>
+<option> Teaching </option>
+<option> Romance-Time Travel Romance </option>
+<option> Military History-American Revolution </option>
+<option> American Revolution-American Revolutionary War </option>
+<option> Cultural-Hungary </option>
+<option> European Literature-Hungarian Literature </option>
+<option> Amish </option>
+<option> Biology-Genetics </option>
+<option> Illness-Disease </option>
+<option> Christianity-New Testament </option>
+<option> Literature-Canadian Literature </option>
+<option> Media Tie In-Anime </option>
+<option>Book Club </option>
+<option> Politics-Political Science </option>
+<option> Own user</option>
+<option> Role Playing Games-Dungeons and Dragons </option>
+<option>Writing-Books About Books </option>
+<option>Historical </option>
+<option> Media Tie In-Tv </option>
+<option> Music-Punk </option>
+<option>War </option>
+<option> Young Adult-Young Adult Science Fiction </option>
+<option>Dark user</option>
+<option> Sequential Art </option>
+<option>European Literature-Spanish Literature </option>
+<option> Christian-Christian Non Fiction user</option>
+<option> Cultural-Ukraine </option>
+<option> Romance-Time Travel Romance user</option>
+<option> Academic-Read For School user</option>
+<option> Family Law-Fostering </option>
+<option> Historical Fiction-Prehistoric </option>
+<option>Cultural-Canada </option>
+<option> Aviation </option>
+<option>Plays-Theatre </option>
+<option>Family </option>
+<option> Art-Art Design </option>
+<option> Design </option>
+<option> Military Fiction-Military Romance </option>
+<option> Adventure-Maritime </option>
+<option> Mathematics-Geometry </option>
+<option> Eastern Africa-Rwanda </option>
+<option> Lesbian-Lesbian Fiction </option>
+<option> Humor-Comedian </option>
+<option> Science Fiction-Climate Change Fiction </option>
+<option>Paranormal-Shapeshifters </option>
+<option> Emergency Services-Firefighters </option>
+<option> Military-Military History user</option>
+<option> Buddhism-Zen </option>
+<option>Adventure-Pirates </option>
+<option> History-Medieval History </option>
+<option>European Literature-Dutch Literature </option>
+<option> Asian Literature-Chinese Literature </option>
+<option>European Literature-Polish Literature </option>
+<option> Food and Drink-Diets user</option>
+<option> Food and Drink-Food user</option>
+<option> Cultural-Lebanon </option>
+<option>Art-Photography </option>
+<option>Military History-Civil War </option>
+<option> European Literature-Serbian Literature user</option>
+<option> Romance-Clean Romance </option>
+<option> Medievalism-Romanticism </option>
+<option> Animals-Wolves </option>
+<option>Christianity-Lds </option>
+<option>Dungeons and Dragons-Dragonlance </option>
+<option> European Literature-Belgian </option>
+<option> Media Tie In-Star Wars </option>
+<option>Health-Medicine </option>
+<option>Love user</option>
+<option> Humanities-Linguistics </option>
+<option> Art and Photography </option>
+<option> Animals-Anthropomorphic </option>
+<option>Education </option>
+<option> Fan Fiction </option>
+<option> Psychology-Psychoanalysis </option>
+<option>Literature-Marathi </option>
+<option>Cultural-France user</option>
+<option> Northern Africa-Sudan </option>
+<option> Historical Romance-Western Historical Romance </option>
+<option> Yaoi-Shounen Ai </option>
+<option> Science-Chemistry </option>
+<option> Religion-Wicca </option>
+<option>GLBT-Lesbian </option>
+<option> Crafts-Quilting </option>
+<option>Cultural-Brazil </option>
+<option>Cultural-Poland </option>
+<option> Northern Africa-Morocco </option>
+<option> Childrens-Pre K </option>
+<option> European Literature-Ukrainian Literature </option>
+<option> History-Microhistory </option>
+<option>Sociology </option>
+<option> Academic </option>
+<option> Fairy Tales-Cinderella </option>
+<option>Media Tie In-Doctor Who </option>
+<option>Science-Physics </option>
+<option> Marvel-Spider Man </option>
+<option> Eastern Africa-Somalia </option>
+<option> Music-Rock N Roll </option>
+<option> True Story user</option>
+<option> Religion-Taoism </option>
+<option>Womens Fiction-Chick Lit user</option>
+<option> Sequential Art-Cartoon </option>
+<option> Sports-Horse Racing </option>
+<option> Folk Tales </option>
+<option> Reference-Trivia </option>
+<option> Church-Church History </option>
+<option> Historical Romance-Victorian Romance </option>
+<option> Christianity-Discipleship </option>
+<option>Mystery-Detective </option>
+<option>Asian Literature-Indonesian Literature </option>
+<option> Reference user</option>
+<option> Religion-Esoterica </option>
+<option> Cultural-Counter Culture </option>
+<option> Mystery-Paranormal Mystery </option>
+<option>Anthropology </option>
+<option> Anthropology-Ethnography </option>
+<option> Philosophy-Skepticism </option>
+<option> Eastern Africa-Eritrea </option>
+<option>Biography Memoir </option>
+<option> Graphic Novels Manga </option>
+<option> Anarchism </option>
+<option> Tragedy </option>
+<option>Literature-Russian Literature </option>
+<option> Poetry Plays </option>
+<option> Fairy Tales-Princesses </option>
+<option> Romance-Category Romance </option>
+<option> Female Authors </option>
+<option> Family Law-Divorce </option>
+<option> Science Fiction-Military Science Fiction </option>
+<option> Reportage </option>
+<option> Esoterica-Alchemy </option>
+<option>Folklore </option>
+<option>Christian-Christian Non Fiction user</option>
+<option>Spirituality user</option>
+<option> Social Issues-Class </option>
+<option> Canon user</option>
+<option> Spirituality user</option>
+<option> Art user</option>
+<option>Paranormal-Ghosts </option>
+<option> Young Adult-Young Adult Fantasy user</option>
+<option> American History-American Civil War user</option>
+<option> Health-Medicine user</option>
+<option> LGBT user</option>
+<option>Health-Mental Health user</option>
+<option> Christian user</option>
+<option> Historical-Medieval user</option>
+<option> Science Fiction-Aliens user</option>
+<option>Self Help user</option>
+<option> Feminism-Womens Studies </option>
+<option>Cultural-India user</option>
+<option>Cultural-Africa user</option>
+<option> Music user</option>
+<option> Earth-The World user</option>
+<option> Classics user</option>
+<option> Romance-Christian Romance user</option>
+<option>American-Southern user</option>
+<option> Christian Fiction user</option>
+<option>Nature-Outdoors </option>
+<option>Religion-Christianity user</option>
+<option> Science Fiction-Alternate History user</option>
+<option>Childrens-Chapter Books </option>
+<option>War-World War II user</option>
+<option>Christian user</option>
+<option> Sociology-Abuse -</option>
+<option>Classics user</option>
+<option>Sexuality user</option>
+<option> Food and Drink-Cooking user</option>
+<option> History-Russian History user</option>
+<option> Cultural-Russia -</option>
+<option> Occult-Tarot user</option>
+<option> Mathematics-Number user</option>
+<option>Adventure-Survival </option>
+<option> Gothic-Gothic Romance </option>
+<option> Asian Literature-Indonesian Literature user</option>
+<option>Politics user</option>
+<option> Computer Science-Programming </option>
+<option>Reference user</option>
+<option> Science-Physics user</option>
+<option> Pop Culture-Nerd user</option>
+<option> Computer Science-Computers </option>
+<option> Science-Engineering </option>
+<option>Adventure user</option>
+<option> Historical-Edwardian user</option>
+<option>Literature-American user</option>
+<option> Labor user</option>
+<option> Politics-Government user</option>
+<option>Thriller-Mystery Thriller user</option>
+<option>Religion-Theology user</option>
+<option> Science Fiction -</option>
+<option>Self Help-Personal Development user</option>
+<option> Religion-Paganism </option>
+<option> History-Prehistory </option>
+<option> War-Military Fiction user</option>
+<option> Childrens-Picture Books user</option>
+<option> Literature-European Literature </option>
+<option>European Literature-Polish Literature user</option>
+<option> Humanities-Linguistics user</option>
+<option> Reference-Research user</option>
+<option> Favorites user</option>
+<option> Plays-Theatre user</option>
+<option> Biography user</option>
+<option> Biography-Autobiography user</option>
+<option>Mystery user</option>
+<option>Adult Fiction-Erotica user</option>
+<option> Erotica-BDSM user</option>
+<option>Fantasy-Magic user</option>
+<option> Alcohol-Booze </option>
+<option> Alcohol-Cocktails </option>
+<option>Category Romance-Harlequin </option>
+<option> Philosophy-Deception </option>
+<option> Harlequin-Harlequin Romance </option>
+<option>Cultural-Portugal </option>
+<option>Music user</option>
+<option> Museology-Museums </option>
+<option> Museology </option>
+<option>Sociology user</option>
+<option> Cultural-France user</option>
+<option> Neuroscience-Brain </option>
+<option>Urban user</option>
+<option> Romance-Historical Romance user</option>
+<option>Young Adult-Teen user</option>
+<option>Anthologies-Collections user</option>
+<option> Spy Thriller-Espionage user</option>
+<option>Horror user</option>
+<option> Womens Fiction-Chick Lit user</option>
+<option> Art-Drawing </option>
+<option> Science-Biology user</option>
+<option>Religion-Christianity </option>
+<option>Historical-Historical Fiction user</option>
+<option>Cultural-Australia user</option>
+<option> Cultural-China user</option>
+<option> Southern Africa-Botswana </option>
+<option> Earth-The World </option>
+<option> Science-Agriculture </option>
+<option> Business user</option>
+<option> Fantasy-Magic user</option>
+<option> Fantasy-Dragons user</option>
+<option> GLBT-Queer user</option>
+<option>Writing-Books About Books user</option>
+<option> Religion-Cults user</option>
+<option>Travel user</option>
+<option> History-World History user</option>
+<option>Historical user</option>
+<option>Religion-Faith user</option>
+<option> Christianity-New Testament user</option>
+<option>Fantasy-Dragons </option>
+<option> Gardening-Horticulture </option>
+<option> Paranormal-Wizards user</option>
+<option> Urban user</option>
+<option>Science Fiction Fantasy user</option>
+<option>Science user</option>
+<option> Animals-Cats user</option>
+<option> Romance-African American Romance </option>
+<option> Adult Fiction user</option>
+<option>Sequential Art-Comic Strips </option>
+<option> Animals user</option>
+<option> Architecture </option>
+<option> Computer Science-Coding </option>
+<option>Law </option>
+<option> Literature-American user</option>
+<option>Animals-Animal Fiction </option>
+<option> Folklore user</option>
+<option>Romance-Love Story user</option>
+<option>Northern Africa-Egypt user</option>
+<option>Mental Health-Mental Illness </option>
+<option> Literature user</option>
+<option> Adventure-Survival user</option>
+<option> Media Tie In-Doctor Who </option>
+<option> Book Club user</option>
+<option>Biography Memoir user</option>
+<option> Cultural-Africa user</option>
+<option>Roman user</option>
+<option>War-Military Fiction user</option>
+<option> Mystery-Golden Age Mystery </option>
+<option> Sequential Art-Komik </option>
+<option> Manga-Manga Romance user</option>
+<option> Manga-Shojo user</option>
+<option> Anthologies user</option>
+<option> Social Science-Social Media </option>
+<option> Paranormal-Fairies user</option>
+<option>Kids user</option>
+<option>Literature-English Literature user</option>
+<option>Apocalyptic-Post Apocalyptic </option>
+<option> Psychology-Counselling user</option>
+<option>Medical </option>
+<option> Literature-Russian Literature user</option>
+<option> Writing-Essays user</option>
+<option>Cultural-China user</option>
+<option> Cultural-Asia user</option>
+<option>Literature-European Literature user</option>
+<option>Religion-Islam user</option>
+<option>Childrens-Middle Grade user</option>
+<option> Polyamorous-Harem </option>
+<option> Cultural user</option>
+<option> Stories </option>
+<option> Biography Memoir user</option>
+<option>Couture-Fashion </option>
+<option> Crafts-Sewing </option>
+<option>Literature-Banned Books user</option>
+<option> Religion-God user</option>
+<option>Fairies-Fae </option>
+<option> European Literature-Italian Literature user</option>
+<option> Judaism-Judaica </option>
+<option> Occult-Mysticism </option>
+<option>European Literature-Romanian Literature user</option>
+<option>Prayer </option>
+<option> Paranormal Urban Fantasy </option>
+<option>Fantasy-Paranormal user</option>
+<option>Language-Communication user</option>
+<option> Novella user</option>
+<option>Science-Engineering user</option>
+<option> Fantasy-Urban Fantasy user</option>
+<option> New York user</option>
+<option> European Literature-Finnish Literature user</option>
+<option>Comics-Superheroes </option>
+<option>Sequential Art-Comics user</option>
+<option> Graphic Novels Comics user</option>
+<option>Architecture </option>
+<option>Business-Amazon user</option>
+<option>Romance-M M Romance user</option>
+<option>Suspense user</option>
+<option>Diary-Journal user</option>
+<option> Mountaineering-Climbing user</option>
+<option> Textbooks user</option>
+<option>Humor user</option>
+<option>Unfinished user</option>
+<option>Modern user</option>
+<option> Mystery-Murder Mystery user</option>
+<option>Textbooks </option>
+<option> Academic user</option>
+<option> Philosophy-Logic </option>
+<option>Romance-Romantic Suspense user</option>
+<option>Christian Fiction user</option>
+<option> Category Romance-Mills and Boon </option>
+<option> The United States Of America user</option>
+<option>Paranormal-Demons user</option>
+<option>Sports-Hockey </option>
+<option> Art-Graffiti user</option>
+<option> Social Science-Social Media user</option>
+<option>Religion-Judaism </option>
+<option> Romance-Interracial Romance </option>
+<option>Romance-Historical Romance user</option>
+<option> Religion-Christianity user</option>
+<option> Young Adult-High School user</option>
+<option> Environment-Green user</option>
+<option> Diary user</option>
+<option> Feminism-Womens Studies user</option>
+<option> Science Fiction-Time Travel user</option>
+<option> Harlequin-Harlequin Desire </option>
+<option> Sports-Sports user</option>
+<option> Disability user</option>
+<option>Fantasy-Urban Fantasy user</option>
+<option>Asian Literature-Indonesian Literature user</option>
+<option> Science user</option>
+<option>Business-Management user</option>
+<option>Fantasy-High Fantasy user</option>
+<option> Young Adult-Teen user</option>
+<option> Sequential Art-Comic Strips user</option>
+<option> Gothic user</option>
+<option>Inspirational user</option>
+<option> History-Food History </option>
+<option>Sports-Fitness user</option>
+<option> Young Adult-Young Adult Contemporary user</option>
+<option> Romantic user</option>
+<option> Literature-Jewish user</option>
+<option> Fantasy-Mythology user</option>
+<option> European Literature-Romanian Literature user</option>
+<option>Romance-Erotic Romance user</option>
+<option> Crime-True Crime user</option>
+<option> Death user</option>
+<option> Mystery-Noir user</option>
+<option> Love user</option>
+<option>Mystery-Cozy Mystery user</option>
+<option>Cultural-Italy user</option>
+<option> Nature-Outdoors user</option>
+<option> Travel user</option>
+<option>Family user</option>
+<option> Religion-Islam user</option>
+<option> Academic-Students </option>
+<option>Fan Fiction </option>
+<option>Biblical Fiction </option>
+<option>European Literature-French Literature </option>
+<option> Animals-Animal Fiction user</option>
+<option>Feminism user</option>
+<option>Sci Fi Fantasy user</option>
+<option>Esoterica-Alchemy </option>
+<option> Fantasy-Dark Fantasy user</option>
+<option> Parenting user</option>
+<option> Family user</option>
+<option>Anthologies user</option>
+<option>Currency-Money </option>
+<option>Young Adult-Young Adult Paranormal user</option>
+<option>World War II-Holocaust user</option>
+<option>European Literature-Scandinavian Literature </option>
+<option>Adult user</option>
+<option> Sequential Art-Comics -</option>
+<option> Comics-Superheroes user</option>
+<option>Young Adult-High School user</option>
+<option>Social Issues-Class user</option>
+<option> Economics-Frugal user</option>
+<option> Science Fiction-Utopia </option>
+<option>Culture-Society user</option>
+<option> Academic-School user</option>
+<option> Mystery-Detective user</option>
+<option>Environment </option>
+<option> Conservation </option>
+<option>Central Africa-Democratic Republic Of The ... user</option>
+<option> Audiobook user</option>
+<option> Historical-Stuart </option>
+<option>Religion-Paganism </option>
+<option> M M Romance-M M Horror user</option>
+<option> Eastern Africa-Tanzania </option>
+<option> Fantasy-Heroic Fantasy user</option>
+<option>Book Club user</option>
+<option> Historical-Victorian user</option>
+<option>Cultural-Canada user</option>
+<option> Tragedy user</option>
+<option>Christianity-Catholic </option>
+<option> Womens user</option>
+<option> Romance-Contemporary Romance user</option>
+<option>Religion-Judaism user</option>
+<option>Fantasy-Mythology user</option>
+<option> Religion-Faith user</option>
+<option> European Literature-Portuguese Literature user</option>
+<option>Own </option>
+<option>Adult Fiction user</option>
+<option>History- user</option>
+<option>Psychology-Counselling </option>
+<option>Mystery-Noir user</option>
+<option> Diary-Journal user</option>
+<option> Race user</option>
+<option>Shapeshifters-Werewolves user</option>
+<option>Historical-Medieval </option>
+<option> Academic-Teachers user</option>
+<option> Education user</option>
+<option>Religion-Buddhism user</option>
+<option>True Story </option>
+<option>Occult-Mysticism user</option>
+<option>Shapeshifters-Werewolves </option>
+<option>Biography-Autobiography </option>
+<option>GLBT-Queer user</option>
+<option> Sexuality user</option>
+<option>Manga-Yaoi </option>
+<option> Literature-Post Colonial </option>
+<option>Occult user</option>
+<option>Childrens-Juvenile user</option>
+<option> Feminism user</option>
+<option>Games-Gaming user</option>
+<option> Cultural-Greece user</option>
+<option>Audiobook user</option>
+<option>Media Tie In-Star Trek </option>
+<option>Comics-Comic Book user</option>
+<option> Sequential Art-Comics user</option>
+<option>Artificial Intelligence </option>
+<option> Romance-Fantasy Romance user</option>
+<option> Culture-Film user</option>
+<option> Young Adult-Coming Of Age user</option>
+<option> Religion-Judaism user</option>
+<option>European Literature-Spanish Literature user</option>
+<option>Womens Fiction user</option>
+<option> Self Help-Personal Development user</option>
+<option> Productivity user</option>
+<option> Environment-Nature user</option>
+<option>Witchcraft </option>
+<option>Leadership user</option>
+<option> Horror-Bizarro Fiction </option>
+<option> Cultural-Ukraine user</option>
+<option> Animals-Dogs user</option>
+<option> Science Fiction-Dying Earth </option>
+<option> Romance-Romantic Suspense user</option>
+<option>Computer Science-Algorithms user</option>
+<option> Computer Science-Software user</option>
+<option> Writing-Journalism user</option>
+<option> Asian Literature-Indian Literature user</option>
+<option>Economics-Finance user</option>
+<option> Magical Realism user</option>
+<option> Cultural-Denmark user</option>
+<option>Speculative Fiction user</option>
+<option> Science Fiction-Military Science Fiction user</option>
+<option> Conservation user</option>
+<option>Business-Entrepreneurship user</option>
+<option> Business-Management user</option>
+<option> Social Movements-Social Justice user</option>
+<option> Social Science user</option>
+<option> Sports-Fitness user</option>
+<option> International Dev...-Human Development </option>
+<option> Sexuality-Sex Work </option>
+<option> European Literature-Bulgarian Literature </option>
+<option>Media Tie In </option>
+<option> Category Romance-Loveswept </option>
+<option> Roman user</option>
+<option> War-World War I user</option>
+<option> Romance-African American Romance user</option>
+<option> Western Africa-Liberia </option>
+<option> Religion-Hinduism user</option>
+<option> Politics-Government </option>
+<option> Science Fiction-Cyberpunk user</option>
+<option> Music-Jazz </option>
+<option>Sociology-Abuse user</option>
+<option> Dark user</option>
+<option> History-Medieval History user</option>
+<option> Diary-Journaling user</option>
+<option> Christianity-Old Testament </option>
+<option> Games-Chess </option>
+<option> Biology-Ecology user</option>
+<option>Womens user</option>
+<option>Computers-Internet user</option>
+<option> Space-Space Opera user</option>
+<option>Travel-Travelogue </option>
+<option>History-World History user</option>
+<option> Food and Drink-Culinary </option>
+<option>Love Inspired-Love Inspired Suspense </option>
+<option> Category Romance-Love Inspired </option>
+<option>Crafts-Quilting </option>
+<option>History-Ancient History </option>
+<option> Punk-Punx </option>
+<option> Sci Fi Fantasy user</option>
+<option> Romance-M M Romance user</option>
+<option> Witchcraft </option>
+<option> Hugo Awards </option>
+<option> Cultural-International user</option>
+<option>Science Fiction-Alternate History user</option>
+<option> Southern Africa-Namibia </option>
+<option>Biology-Evolution </option>
+<option> Islam-Muslimah </option>
+<option>Sports-Cycling </option>
+<option>Family Law-Fostering </option>
+<option>Fantasy -</option>
+<option>Crime-True Crime user</option>
+<option>Realistic Fiction-Slice Of Life user</option>
+<option> Social user</option>
+<option>Crafts-Sewing </option>
+<option>Young Adult-Young Adult Romance </option>
+<option> Gay-Gay Fiction user</option>
+<option>Art user</option>
+<option> Anthropology user</option>
+<option> Philosophy-Theory user</option>
+<option> Social Justice-Social Change </option>
+<option> Fairies-Fae user</option>
+<option>African Literature-Egyptian Literature user</option>
+<option>Environment-Nature user</option>
+<option> Gardening user</option>
+<option>Self Help -</option>
+<option>Romance-African American Romance </option>
+<option> Romance-M F Romance user</option>
+<option>Culture-Pop Culture user</option>
+<option>Drama user</option>
+<option> LGBT-Gay user</option>
+<option>Short Stories-Short Story Collection user</option>
+<option>Fairy Tales-Cinderella </option>
+<option> Food and Drink user</option>
+<option> Cultural-Canada user</option>
+<option> Leadership user</option>
+<option> European Literature-Spanish Literature user</option>
+<option> Futuristic user</option>
+<option>Christian-Christian Living </option>
+<option>Classics-Cult Classics user</option>
+<option>Romance-Interracial Romance </option>
+<option>Poetry -</option>
+<option> Literature -</option>
+<option>Romance-Contemporary Romance user</option>
+<option> Dc Comics-Superman </option>
+<option>Pop Culture-Nerd </option>
+<option> Cultural-India user</option>
+<option>True Story user</option>
+<option>Thriller-Psychological Thriller </option>
+<option> Culture-Pop Culture user</option>
+<option> Food and Drink-Cookbooks user</option>
+<option>Sequential Art-Bande DessinÃÂ©e user</option>
+<option> Fat-Fat Acceptance </option>
+<option> Health-Fat </option>
+<option>Animals user</option>
+<option>Sports-Fitness </option>
+<option> Art-Photography -</option>
+<option> Computers-Hackers user</option>
+<option> Language-Writing user</option>
+<option> Surreal </option>
+<option> Cultural-Japan user</option>
+<option> Literature-Asian Literature user</option>
+<option>New York </option>
+<option>Academic-School user</option>
+<option> Romance -</option>
+<option> Historical-Historical Fiction -</option>
+<option> Humor-Comedy -</option>
+<option> Pseudoscience-Conspiracy Theories user</option>
+<option> European Literature-Czech Literature user</option>
+<option> Games-Video Games user</option>
+<option>Nurses-Nursing user</option>
+<option>European Literature-Hungarian Literature </option>
+<option> Travel-Travelogue user</option>
+<option> World War II-Holocaust user</option>
+<option> United States </option>
+<option>Games-Chess </option>
+<option>Science Fiction-Cyberpunk </option>
+<option> M M Romance-M M Fantasy </option>
+<option>Fantasy-Fairy Tales user</option>
+<option>Literature-Asian Literature user</option>
+<option>Criticism-Literary Criticism user</option>
+<option> Cultural-Pakistan user</option>
+<option> Social Issues user</option>
+<option> LGBT-Asexual </option>
+<option>Sexuality </option>
+<option> Sociology-Abuse user</option>
+<option> Science Fiction R...-Futuristic Romance </option>
+<option>Futuristic user</option>
+<option>Science Fiction Fantasy </option>
+<option> Health-Nutrition user</option>
+<option> Cultural-Romania user</option>
+<option>Animals-Cats </option>
+<option>Literature-Black Literature user</option>
+<option>Comics Manga user</option>
+<option>Self Help-Personal Development </option>
+<option>Cultural-Portugal user</option>
+<option> Holiday-Halloween user</option>
+<option> Northern Africa-Libya </option>
+<option> Africa-Northern Africa </option>
+<option> Computer Science-Algorithms </option>
+<option> Academic-Academics </option>
+<option>Asian Literature-Japanese Literature </option>
+<option>European Literature-Swedish Literature </option>
+<option> Manga-Josei </option>
+<option>War-World War I user</option>
+<option>Cultural-Germany </option>
+<option> Cultural-African American user</option>
+<option> Dungeons and Dragons-Dragonlance </option>
+<option> Engineering-Electrical Engineering </option>
+<option> Environment-Sustainability </option>
+<option> Thriller-Mystery Thriller -</option>
+<option> Art-Visual Art </option>
+<option>Literature-st Century user</option>
+<option> Native Americans </option>
+<option> Paranormal-Esp </option>
+<option>Academic-Read For School user</option>
+<option> Academic-School -</option>
+<option> Lds-Lds Fiction user</option>
+<option> Medical user</option>
+<option>Economics user</option>
+<option>Cultural-Israel </option>
+<option>Central Africa-Angola </option>
+<option>European Literature-German Literature user</option>
+<option> Occult user</option>
+<option> European Literature-British Literature user</option>
+<option>Games-Role Playing Games </option>
+<option>Cultural-Germany user</option>
+<option> Aircraft-Helicopters </option>
+<option>Illness-Disease user</option>
+<option>Parenting-Adoption </option>
+<option> Family Law-Divorce user</option>
+<option> Apocalyptic-Post Apocalyptic user</option>
+<option>Science Fiction-Time Travel user</option>
+<option> European Literature-German Literature user</option>
+<option>Religion -</option>
+<option> Realistic Fiction-Slice Of Life user</option>
+<option> Cultural-Italy user</option>
+<option> Cultural-Spain user</option>
+<option>Young Adult-Coming Of Age </option>
+<option>Religion-Hinduism user</option>
+<option>Childrens-Young Readers user</option>
+<option>Science-Computer Science </option>
+<option> Science Nature user</option>
+<option>European Literature-British Literature user</option>
+<option> Westerns-Weird West </option>
+<option>Asian Literature-Indian Literature user</option>
+<option> Transport-Motorcycle </option>
+<option> Childrens-Nursery Rhymes </option>
+<option>Eastern Africa-Ethiopia </option>
+<option>Warfare-Fighters </option>
+<option> Far Right-Ku Klux Klan user</option>
+<option>Adventure-Survival user</option>
+<option> Social Issues-Activism user</option>
+<option> Central Africa-Angola </option>
+<option> Fairy Tales-Fairy Tale Retellings user</option>
+<option>Action </option>
+<option>Cultural-Ireland </option>
+<option> Science Fiction-Alternate Universe </option>
+<option> Martial Arts-Mixed Martial Arts </option>
+<option> Diary-Journal </option>
+<option>European Literature-Dutch Literature user</option>
+<option> Politics-Presidents user</option>
+<option> Young Adult -</option>
+<option>European Literature-Albanian Literature user</option>
+<option>Military History-Civil War user</option>
+<option> Cultural-Lebanon user</option>
+<option> Culture-Cultural Studies </option>
+<option>Cultural-Bangladesh </option>
+<option> Computers-Hackers </option>
+<option>Mystery-Detective user</option>
+<option> Physics-Quantum Mechanics </option>
+<option>Biology-Neuroscience </option>
+<option>Culture-Film user</option>
+<option>Young Adult-Young Adult Fantasy user</option>
+<option>Business-Management </option>
+<option>Science Fiction-Cyberpunk user</option>
+<option> Literature-African Literature user</option>
+<option> Law user</option>
+<option> Nature-Plants user</option>
+<option> Doctors </option>
+<option> Cultural-Bangladesh </option>
+<option>Mythology-Mermaids user</option>
+<option>Literature-th Century user</option>
+<option>Education user</option>
+<option>Romance-Lesbian Romance </option>
+<option> Sequential Art-Bande DessinÃÂ©e user</option>
+<option> LGBT-Bisexual </option>
+<option>Animals-Birds </option>
+<option>Football </option>
+<option> Fiction -</option>
+<option> Philosophy-Thelema </option>
+<option> Mythology-Mermaids user</option>
+<option> Art and Photography user</option>
+<option> Pseudoscience-Cryptozoology </option>
+<option> Relationships user</option>
+<option> Fantasy-Epic Fantasy user</option>
+<option> Diary-Journaling </option>
+<option>Polyamory </option>
+<option> Childrens-School Stories </option>
+<option> American-African American Literature user</option>
+<option> Geology-Palaeontology </option>
+<option> Academic-Grad School </option>
+<option> German History-Nazi Party </option>
+<option>Romance-Interracial Romance user</option>
+<option> Computers-Internet </option>
+<option> History-Archaeology </option>
+<option>New Adult user</option>
+<option> Fantasy -</option>
+<option>Environment user</option>
+<option> Classics-Modern Classics user</option>
+<option>Literature-Jewish </option>
+<option>Romance-Fantasy Romance </option>
+<option>Magical Realism user</option>
+<option>Comics-Superheroes user</option>
+<option> Judaism-Judaica user</option>
+<option> Military History-Naval History </option>
+<option> Pulp user</option>
+<option>Romance-M F Romance user</option>
+<option>Gothic </option>
+<option>Gay Romance-Gay For You user</option>
+<option>Health-Medicine user</option>
+<option> Category Romance-Harlequin user</option>
+<option>Business-Amazon </option>
+<option>Football user</option>
+<option> Fantasy-Weird Fiction user</option>
+<option>LGBT user</option>
+<option> Westerns user</option>
+<option> Religion-Wicca user</option>
+<option> Games-Role Playing Games </option>
+<option> Romance-Science Fiction Romance user</option>
+<option> Reference-Field Guides </option>
+<option> Mythology-Arthurian user</option>
+<option>Adventure-Pirates user</option>
+<option>Alcohol-Beer </option>
+<option>Paranormal-Fairies </option>
+<option> Academic-College user</option>
+<option> Cultural-Bulgaria </option>
+<option>Mystery-Cozy Mystery </option>
+<option>Philosophy-Theory </option>
+<option>Health user</option>
+<option> Health-Illness </option>
+<option> Science-Computer Science user</option>
+<option> Science-Engineering user</option>
+<option> Sports-Figure Skating </option>
+<option> Media Tie In-Star Trek </option>
+<option> Politics-Far Right </option>
+<option> Speculative Fiction user</option>
+<option> Gender and Sexuality </option>
+<option> Lds-Mormonism user</option>
+<option>Pseudoscience-Cryptozoology </option>
+<option> Folklore-Monsters user</option>
+<option>Childrens-Juvenile </option>
+<option> Polyamory-Polygamy </option>
+<option> Pop Culture-Fandom </option>
+<option> European Literature-French Literature user</option>
+<option>Folk Tales-Fables user</option>
+<option> Philosophy-Eastern Philosophy </option>
+<option> Science-Mathematics user</option>
+<option> Labor </option>
+<option>Food and Drink-Cookbooks user</option>
+<option>Love </option>
+<option> Russia-Soviet History </option>
+<option>Witchcraft user</option>
+<option>Productivity </option>
+<option> North American Hi...-American History user</option>
+<option>New York user</option>
+<option>Romance-Christian Romance user</option>
+<option> Christian Fiction -</option>
+<option> Civil War-English Civil War </option>
+<option> Nurses-Nursing </option>
+<option>European Literature-French Literature user</option>
+<option>European Literature-Serbian Literature </option>
+<option>Asian Literature-Turkish Literature user</option>
+<option> History-European History user</option>
+<option> Romance-Love Story user</option>
+<option>Horror-Ghost Stories user</option>
+<option> Did Not Finish user</option>
+<option>Plays-Theatre user</option>
+<option>Cultural-Spain </option>
+<option>Spirituality-New Age user</option>
+<option> Mystery-Golden Age Mystery user</option>
+<option>Buisness user</option>
+<option>Cultural-Scotland user</option>
+<option>Classics-Modern Classics user</option>
+<option>Pseudoscience-Conspiracy Theories </option>
+<option> History-Japanese History </option>
+<option>Fantasy-Supernatural </option>
+<option>European Literature-Hungarian Literature user</option>
+<option> Art-Crafts user</option>
+<option> M M Romance-M M Paranormal </option>
+<option>Unfinished </option>
+<option> Kids user</option>
+<option> Transport-Cars </option>
+<option> Literature-European Literature user</option>
+<option>European Literature-Albanian Literature </option>
+<option> Art-Drawing user</option>
+<option> Art-Art Design user</option>
+<option> Eastern Africa-Uganda </option>
+<option>Space </option>
+<option> M M Romance-M M Contemporary </option>
+<option>Nurses-Nursing </option>
+<option> Environment-Green </option>
+<option> Eastern Africa-Zimbabwe </option>
+<option> Horror-Erotic Horror </option>
+<option>Gender-Gender Studies </option>
+<option> Criticism-Literary Criticism user</option>
+<option> Harlequin-Harlequin Blaze </option>
+<option> Philosophy-Metaphysics user</option>
+<option>Science Fiction-Alternate History </option>
+<option>Teaching user</option>
+<option> Philosophy -</option>
+<option> Star Trek-Star Trek Deep Space Nine </option>
+<option>Religion-Church </option>
+<option> Christianity-Ecclesiology </option>
+<option> Category Romance-Silhouette </option>
+<option> Paranormal-Ghosts user</option>
+<option> Historical Fiction-Naval Historical Fiction </option>
+<option>European Literature-Portuguese Literature user</option>
+<option>Religion-Esoterica </option>
+<option>Linguistics-Semiotics </option>
+<option> Social Issues </option>
+<option>Category Romance-Mills and Boon user</option>
+<option> Humanities-Classical Studies </option>
+<option> LGBT-Transgender user</option>
+<option>Nonfiction -</option>
+<option> Horror-Ghost Stories user</option>
+<option>Cultural-Turkish </option>
+<option> Sex Work-Strippers </option>
+<option>Language-Writing user</option>
+<option> Fantasy-Comic Fantasy </option>
+<option> Horror-Gothic Horror </option>
+<option> Christianity-Catholic user</option>
+<option> Geography-Cities </option>
+<option> Cultural-Poland user</option>
+<option> Football user</option>
+<option>Currency-Money user</option>
+<option> Finance-Personal Finance user</option>
+<option> Gamebooks-Choose Your Own Adventure </option>
+<option>LGBT-Asexual </option>
+<option> Academic-Grad School user</option>
+<option> American-American Fiction user</option>
+<option>Nobel Prize </option>
+<option>Biology-Ecology </option>
+<option>Magical Realism </option>
+<option> Religion-Scripture </option>
+<option> Media Tie In-Babylon  </option>
+<option>Eastern Africa-Rwanda </option>
+<option> Christianity-Lds user</option>
+<option>Audiobook </option>
+<option>Plays user</option>
+<option> Food and Drink-Culinary user</option>
+<option> Esoterica-Theosophy </option>
+<option> Occult-Mysticism user</option>
+<option>Culture-Pop Culture </option>
+<option> Eastern Africa-Burundi </option>
+<option>Science-Technology user</option>
+<option> European Literature-Albanian Literature </option>
+<option>Occult-Magick </option>
+<option> Witchcraft user</option>
+<option>Science Fiction-Apocalyptic </option>
+<option> Astronomy-Planets </option>
+<option> Cultural-Sweden user</option>
+<option> Museology-Curation user</option>
+<option>Biography-Autobiography user</option>
+<option> Mystery-Cozy Mystery user</option>
+<option>Disability </option>
+<option>Fairy Tales-Fairy Tale Retellings user</option>
+<option>Action user</option>
+<option> Central Africa-Republic Of The Congo </option>
+<option> Art-Woodwork </option>
+<option> History and Politics </option>
+<option> Transport-Railways user</option>
+<option>Gamebooks-Choose Your Own Adventure </option>
+<option>World Of Warcraft-Warcraft </option>
+<option>Religion-Wicca </option>
+<option>Cultural-Asia user</option>
+<option>Gardening user</option>
+<option>Gardening </option>
+<option>Neuroscience-Brain user</option>
+<option> Transgender-Cross Dressing </option>
+<option>Writing-Journalism </option>
+<option> Games-Game Design </option>
+<option> Horror -</option>
+<option>Teaching </option>
+<option>Cultural user</option>
+<option> Animals-Wolves user</option>
+<option>United States user</option>
+<option> Buddhism-Zen user</option>
+<option>Northern Africa-Morocco user</option>
+<option> Childrens-Juvenile user</option>
+<option> Games-Gaming user</option>
+<option> Harlequin-Harlequin Presents </option>
+<option>War-World War II </option>
+<option>Romance-M F Romance </option>
+<option>Animals-Dogs </option>
+<option> Polyamorous-Reverse Harem user</option>
+<option> Sequential Art-Graphic Non Fiction user</option>
+<option> Menage-M M F user</option>
+<option>Historical-Regency </option>
+<option>Holiday-Halloween </option>
+<option> Business-Entrepreneurship user</option>
+<option> Queer-Queer Lit </option>
+<option>Religion-Esoterica user</option>
+<option> LGBT-Genderqueer </option>
+<option> Favorites </option>
+<option> Comics Bd </option>
+<option> Manga-Manga Romance </option>
+<option>American-African American Literature user</option>
+<option> Travel-Walking </option>
+<option>Academic </option>
+<option> Couture-Fashion user</option>
+<option> Historical Romance-Western Historical Romance user</option>
+<option>Humanities-Language </option>
+<option> Writing-Books About Books user</option>
+<option> Romance-Clean Romance user</option>
+<option>Diary user</option>
+<option> Medicine-Psychiatry user</option>
+<option> Comics-Comic Book user</option>
+<option> Role Playing Games-World Of Darkness </option>
+<option>Own user</option>
+<option>Superheroes-Dc Comics </option>
+<option>Pornography user</option>
+<option>Race-Anti Racist user</option>
+<option> Western Africa-Benin </option>
+<option> Alcohol-Beer </option>
+<option> Food and Drink-Vegetarian </option>
+<option> Vegetarian-Vegetarianism </option>
+<option> Harlequin-Harlequin Nocturne </option>
+<option> Literature-Multicultural Literature </option>
+<option> Pseudoscience-Creation Science </option>
+<option>Philosophy-Metaphysics </option>
+<option> Reference-Dictionaries </option>
+<option>Cultural-Scotland </option>
+<option>Speculative Fiction </option>
+<option>Childrens-nd Grade </option>
+<option>Games-Game Design </option>
+<option> Number-Counting </option>
+<option> Harlequin-Harlequin Historical </option>
+<option>European Literature-Danish </option>
+<option>Horror-Bizarro Fiction </option>
+<option>Science-Geography </option>
+<option> Science-Earth Sciences user</option>
+<option>Animals-Horses user</option>
+<option>Polyamorous-Reverse Harem user</option>
+<option> Biology-Evolution user</option>
+<option> Futurism user</option>
+<option>Christian-Christian Living user</option>
+<option>Academic-School </option>
+<option> Cultural-Brazil user</option>
+<option> Cultural-Portugal user</option>
+<option> Transport-Bicycles user</option>
+<option> Mine </option>
+<option> M M Romance-M M Paranormal user</option>
+<option> GLBT-Lesbian user</option>
+<option>Christian-Christian Non Fiction </option>
+<option> Science Fiction-Dystopia -</option>
+<option> Asian Literature-Japanese Literature user</option>
+<option>European Literature-Swedish Literature user</option>
+<option>Asian Literature-Indian Literature </option>
+<option>Paranormal-Vampires -</option>
+<option> Teaching user</option>
+<option>Paranormal-Wizards </option>
+<option>Cultural-Romania </option>
+<option> Reference-Trivia user</option>
+<option> History and Politics user</option>
+<option> Media Tie In-Tv user</option>
+<option>School Stories-Boarding School </option>
+<option>Cultural-Russia user</option>
+<option> Short Stories -</option>
+<option> Cultural-Turkish user</option>
+<option>Epic user</option>
+<option> American-Southern user</option>
+<option> European Literature-Bulgarian Literature user</option>
+<option> Reference-Guides </option>
+<option>Esoterica-Theosophy </option>
+<option>Cultural-Lebanon </option>
+<option>Cultural-Italy </option>
+<option> Games-Gamebooks user</option>
+<option> Games-Gamebooks </option>
+<option> Adolescence </option>
+<option> Asian Literature-Chinese Literature user</option>
+<option> Folk Tales-Fables </option>
+<option>Occult-Tarot </option>
+<option> Computer Science-Computers user</option>
+<option> Jewellery </option>
+<option>Mythology-Greek Mythology user</option>
+<option> Alcohol-Wine </option>
+<option> Sex Work-Prostitution </option>
+<option> Mail Order Brides </option>
+<option>Literature-th Century </option>
+<option>Textbooks user</option>
+<option>Animals-Dogs user</option>
+<option> Comics Manga user</option>
+<option> Comics Bd user</option>
+<option>Realistic Fiction user</option>
+<option>Science-Mathematics user</option>
+<option> European Literature-Danish user</option>
+<option>Relationships user</option>
+<option>GLBT-Queer </option>
+<option>Humanities-Linguistics </option>
+<option>Art-Art Design </option>
+<option> Northern Africa-Egypt user</option>
+<option> Sequential Art user</option>
+<option>Religion-Atheism </option>
+<option>European Literature-Irish Literature </option>
+<option>Dc Comics-Wonder Woman </option>
+<option> Dc Comics-Superman user</option>
+<option> Plants-Herbs </option>
+<option> Romance-Interracial Romance user</option>
+<option> Africa-Eastern Africa </option>
+<option>Historical-Victorian user</option>
+<option> Cultural-Latin American user</option>
+<option> Childrens-nd Grade user</option>
+<option>Literature-Canadian Literature user</option>
+<option>Amish user</option>
+<option>Menage-M M F </option>
+<option> Classics-Classic Literature user</option>
+<option> Literature-Ancient user</option>
+<option> Fan Fiction user</option>
+<option>Female Authors user</option>
+<option> Asian Literature-Turkish Literature user</option>
+<option> Western Africa-Senegal </option>
+<option>Religion-Faith </option>
+<option> Eastern Africa-Rwanda user</option>
+<option>Humor-Comedy </option>
+<option> Colouring Books </option>
+<option> Cartography-Maps </option>
+<option> Geography-Cartography </option>
+<option>Church-Church History user</option>
+<option> Cryptids-Bigfoot user</option>
+<option> European Literature-Hungarian Literature user</option>
+<option> Religion-Esoterica user</option>
+<option>Retellings </option>
+<option>Comics-Comic Book </option>
+<option> Spirituality-New Age user</option>
+<option>Criticism-Literary Criticism </option>
+<option>Games-Role Playing Games user</option>
+<option>Military-Military History user</option>
+<option>Alcohol-Beer user</option>
+<option> Cities-Urban Studies </option>
+<option> Western Africa-Ivory Coast </option>
+<option>Science Fiction-Aliens user</option>
+<option>Dc Comics-Batman </option>
+<option>Romance-Science Fiction Romance </option>
+<option> Animals-Horses user</option>
+<option> Media Tie In user</option>
+<option>Young Adult-Teen </option>
+<option> Beer-Brewing </option>
+<option>Media Tie In user</option>
+<option> European Literature-Swedish Literature user</option>
+<option>Science Fiction-Aliens </option>
+<option> Christian -</option>
+<option> Space user</option>
+<option>Science-Natural History user</option>
+<option>Diary-Journal </option>
+<option>Art-Photography user</option>
+<option> Social Issues-Poverty user</option>
+<option>Feminism-Womens Studies user</option>
+<option>Diary </option>
+<option> Mathematics-Number </option>
+<option>Fantasy-High Fantasy </option>
+<option> Environment user</option>
+<option>Fan Fiction user</option>
+<option> International Dev...-Human Development user</option>
+<option>Gothic user</option>
+<option> Aeroplanes </option>
+<option> Games-Go </option>
+<option>Computer Science-Programming user</option>
+<option> Computer Science-Coding user</option>
+<option> Fantasy-High Fantasy user</option>
+<option>War user</option>
+<option> Politics-Political Science user</option>
+<option> Fat-Fat Acceptance user</option>
+<option>Spy Thriller-Espionage </option>
+<option> Horror-Erotic Horror user</option>
+<option> M M Romance-M M Science Fiction </option>
+<option> Amish user</option>
+<option>Tragedy user</option>
+<option> Dark Fantasy-Goth </option>
+<option>Cultural </option>
+<option> Buisness user</option>
+<option>Spirituality-New Age </option>
+<option>Philosophy-Eastern Philosophy user</option>
+<option> Architecture user</option>
+<option>Novella user</option>
+<option>History-European History user</option>
+<option> Star Trek-Star Trek The Next Generation </option>
+<option>Cultural-Iran </option>
+<option>Gamebooks-Choose Your Own Adventure user</option>
+<option> M M Romance-M M Historical Romance </option>
+<option>Food and Drink-Vegan user</option>
+<option> Esoterica-Theosophy user</option>
+<option>Romance-Paranormal Romance -</option>
+<option> Animals-Rabbits </option>
+<option> Health-Aspergers user</option>
+<option> Dc Comics-Wonder Woman </option>
+<option> Manga-Seinen user</option>
+<option> Media Tie In-Anime user</option>
+<option>Science-Library Science </option>
+<option> Library Science-Information Science </option>
+<option>Horror-Ghost Stories </option>
+<option> Star Trek-Star Trek Voyager </option>
+<option> Rock N Roll-Led Zeppelin </option>
+<option>Travel-Road Trip user</option>
+<option>Criticism user</option>
+<option> American Revolution-American Revolutionary War user</option>
+<option> Humanities-Language user</option>
+<option>Academic-College user</option>
+<option>Romantic user</option>
+<option> American-Americana user</option>
+<option> Historical Fiction-Historical Fantasy user</option>
+<option> History-Ancient History user</option>
+<option> Pseudoscience-Naturopathy </option>
+<option> Science-Vaccines </option>
+<option>Childrens-Chapter Books user</option>
+<option>Folk Tales </option>
+<option> Cultural-Belgium user</option>
+<option>Soccer user</option>
+<option>Cultural-Japan user</option>
+<option> Biography-Music Biography </option>
+<option> Criticism user</option>
+<option>Science-Physics user</option>
+<option> M M Romance-M M Mystery </option>
+<option> Fantasy-Low Fantasy user</option>
+<option> Africa-Western Africa </option>
+<option>Classics-Classic Literature user</option>
+<option> Disability-Disability Studies </option>
+<option>Novella </option>
+<option>Reference-Research user</option>
+<option>Folklore-Monsters user</option>
+<option>Cultural-Romania user</option>
+<option> Art-Photography user</option>
+<option> Sequential Art-Manga user</option>
+<option>European Literature-Finnish Literature user</option>
+<option>Gender user</option>
+<option> Pornography user</option>
+<option> European History-Spanish History </option>
+<option>Science-Computer Science user</option>
+<option>Holiday-Christmas user</option>
+<option>Parenting user</option>
+<option>Sports and Games-Games </option>
+<option> Childrens-Young Readers user</option>
+<option> Holiday user</option>
+<option> Food and Drink-Tea </option>
+<option>Christian Fiction -</option>
+<option> Amish -</option>
+<option> Transport-Aircraft </option>
+<option> Category Romance-Traditional Regency </option>
+<option> Reference-Guidebook user</option>
+<option>Cultural-Turkish user</option>
+<option> Cultural-Counter Culture user</option>
+<option>Academic user</option>
+<option>Adult -</option>
+<option> Esoterica-Spiritualism </option>
+<option>History-Local History user</option>
+<option> Humor-Jokes </option>
+<option>Christianity-Old Testament </option>
+<option>Sports and Games-Games user</option>
+<option> Folk Tales user</option>
+<option>Nature-Outdoors user</option>
+<option>Science-Technology </option>
+<option> Sports and Games-Games user</option>
+<option>Sports-Baseball user</option>
+<option> Harlequin-Hqn </option>
+<option>Paranormal-Demons </option>
+<option>Christianity-Evangelism </option>
+<option> Museology user</option>
+<option> Christian-Christian Living user</option>
+<option>Thriller-Psychological Thriller user</option>
+<option> Native Americans user</option>
+<option>European Literature-Belgian user</option>
+<option>Alcohol-Wine </option>
+<option> European Literature-Irish Literature user</option>
+<option>Holiday-Halloween user</option>
+<option>European Literature-British Literature </option>
+<option>Disability user</option>
+<option>Politics-Political Science user</option>
+<option> Humor-Comedian user</option>
+<option>Paranormal-Ghosts user</option>
+<option> Economics-Frugal </option>
+<option> Linguistics-Semiotics </option>
+<option>Race </option>
+<option> Subways-London Underground </option>
+<option> Cities-Urban Planning </option>
+<option> Business-Apple </option>
+<option>Humor-Jokes </option>
+<option>Political Science-International Relations </option>
+<option>Computer Science-Computers </option>
+<option> Anthropology-Ethnography user</option>
+<option> Sequential Art-Comix user</option>
+<option> Humanities </option>
+<option> Parenting-Adoption user</option>
+<option> GLBT-Queer Studies </option>
+<option>North American Hi...-American History </option>
+<option> History-Latin American History </option>
+<option> Philosophy-Eastern Philosophy user</option>
+<option> History-Local History user</option>
+<option> Nature-Ornithology </option>
+<option>Northern Africa-Egypt </option>
+<option> Esoterica-Astrology </option>
+<option> Childrens-Pre K user</option>
+<option> Environment-Peak Oil </option>
+<option> Female Authors user</option>
+<option>Christianity-New Testament </option>
+<option> History-Archaeology user</option>
+<option> Cities-Urbanism </option>
+<option> Linguistics-Semiotics user</option>
+<option> Food and Drink-Cuisine </option>
+<option> Food and Drink-Gastronomy </option>
+<option> Short Stories-Short Story Collection user</option>
+<option>European Literature-Czech Literature user</option>
+<option>Occult-Magick user</option>
+<option> Health-Health Care </option>
+<option> Psychology-Emotion </option>
+<option>Animals-Dinosaurs </option>
+<option> Design user</option>
+<option>Sexuality-Sex Work </option>
+<option>Pulp </option>
+<option> Western Africa-Sierra Leone </option>
+<option>Suspense -</option>
+<option> Holiday-Christmas user</option>
+<option> Wildlife </option>
+<option>Fantasy-Dark Fantasy </option>
+<option> Satanism </option>
+<option>Games-Gaming </option>
+<option> Northern Africa-Tunisia </option>
+<option>Literature-st Century </option>
+<option>Erotica-BDSM user</option>
+<option>Romance -</option>
+<option> Humor -</option>
+<option> Adult Fiction-Erotica -</option>
+<option> Art-Street Art </option>
+<option> Art-Graffiti </option>
+<option> Cultural-Kazakhstan </option>
+<option> Fat-Fat Studies </option>
+<option> Cultural-Bolivia </option>
+<option> Academic-Teachers </option>
+<option> Horror-Bizarro Fiction user</option>
+<option>Cultural-Counter Culture </option>
+<option> History-Oral History </option>
+<option> Horror-Victor Frankenstein </option>
+<option>Contemporary -</option>
+<option> Outdoors-Wilderness </option>
+<option>Animals-Wolves user</option>
+<option> American-American Classics </option></select></div>
+      </div>
+
+        <div class="text-center mt-4">
+         <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Signup</button>
+        </div>
+      </div>
+    </form>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Login with Avatar Form-->
+
+
+    </body>
+</html>
